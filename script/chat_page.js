@@ -91,7 +91,7 @@ on('click', '.mobile-nav-toggle', function (e) {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-if(sessionStorage.getItem("place")=="null")
+if(!sessionStorage.getItem("place"))
   document.querySelector(".msgView").style.visibility = 'hidden';
 
 if(sessionStorage.getItem("place")=="bonomaya")

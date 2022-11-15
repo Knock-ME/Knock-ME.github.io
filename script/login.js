@@ -33,7 +33,7 @@ function testAPI() {                      // Testing Graph API after login.  See
         document.getElementById('status').innerHTML =
             'Thanks for logging in, ' + response.name + '!';
         sessionStorage.id = response.id;
-        sessionStorage.nm = response.nm;
+        sessionStorage.nm = response.name;
 
     });
 
