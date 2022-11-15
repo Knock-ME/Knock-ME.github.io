@@ -26,28 +26,28 @@ const firebaseConfig = {
  }(document, 'script', 'facebook-jssdk'));
 
 
-const currentConfig = {
-  id: "420",
-  pic: "../image/dp.png",
-  nm: "Khan",
-  place: "null"
-};
+// const currentConfig = {
+//   id: "420",
+//   pic: "../image/dp.png",
+//   nm: "Khan",
+//   place: "null"
+// };
 
-//sessionStorage.clear();
-if(!sessionStorage.getItem("id"))
+//Storage.clear();
+if(!Storage.getItem("id"))
   location.replace("https://yaminmahdi.github.io/KnockME");
-else
-{
-  currentConfig.id=sessionStorage.getItem("id");
-  currentConfig.pic=sessionStorage.getItem("pic");
-  currentConfig.nm=sessionStorage.getItem("nm");
-}
+// else
+// {
+//   currentConfig.id=sessionStorage.getItem("id");
+//   currentConfig.pic=sessionStorage.getItem("pic");
+//   currentConfig.nm=sessionStorage.getItem("nm");
+// }
 //sessionStorage.setItem("id", "420");
 // sessionStorage.setItem("nm", "Khan");
 // sessionStorage.setItem("place", "null");
 
-if(sessionStorage.getItem("place"))
-  currentConfig.place=sessionStorage.getItem("place");
+// if(sessionStorage.getItem("place"))
+//   currentConfig.place=sessionStorage.getItem("place");
 
 
 
@@ -89,18 +89,18 @@ on('click', '.mobile-nav-toggle', function (e) {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-if(sessionStorage.getItem("place")=="null")
+if(!Storage.getItem("place"))
   document.querySelector(".msgView").style.visibility = 'hidden';
 
-if(sessionStorage.getItem("place")=="bonomaya")
+if(Storage.place=="bonomaya")
   bonomaya();
  
  
 
 function bonomaya()
 {
-  currentConfig.place="bonomaya";
-  sessionStorage.setItem("place", "bonomaya");
+  Storage.place="bonomaya";
+  // sessionStorage.setItem("place", "bonomaya");
   document.querySelector(".pPicInner").src="../image/bonomaya.jpg";
   document.querySelector("#bonomaya").setAttribute("class", "tab tabSelected placeNm");
   document.querySelector(".conversation").innerHTML="";
@@ -178,12 +178,12 @@ on('click', '.sendBtn', function (e) {
 
   // Create a new post reference with an auto-generated id
   const db = getDatabase();
-  const postListRef = ref(db, currentConfig.place);
+  const postListRef = ref(db, Storage.place);
   const newPostRef = push(postListRef);
   set(newPostRef, {
-    "id": "420",
-    "pic": "../image/dp.png",
-    "nm": "Khan",
+    "id": Storage.id,
+    "pic": Storage.pic,
+    "nm": Storage.nm,
     "msg": document.querySelector(".editTxt").value 
   });
 

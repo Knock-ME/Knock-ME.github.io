@@ -32,8 +32,8 @@ function testAPI() {                      // Testing Graph API after login.  See
         console.log('Successful login for: ' + response.name);
         document.getElementById('status').innerHTML =
             'Thanks for logging in, ' + response.name + '!';
-        sessionStorage.setItem("id", response.id);
-        sessionStorage.setItem("nm", response.name);
+            Storage.id= response.id;
+            Storage.nm= response.nm;
     });
     FB.api(
         '/me/picture',
@@ -41,8 +41,8 @@ function testAPI() {                      // Testing Graph API after login.  See
         { "fields": "url" },
         function (response) {
             // Insert your code here
-            sessionStorage.setItem("pic", response);
-            console.log('img url, ' + response + '.');
+            Storage.pic= response.fields;
+            console.log('img url, ' + response.fields + '.');
 
         }
     );
