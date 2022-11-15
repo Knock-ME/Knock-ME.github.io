@@ -7,11 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/login.css">
-    <script src="https://connect.facebook.net/en_US/sdk.js"></script>
-
 </head>
 
 <body>
+    <script src="script/login.js"></script>
 
 
     <div class="center">
@@ -25,12 +24,16 @@
             data-layout="default" 
             data-auto-logout-link="false" 
             data-use-continue-as="false"
+            scope="public_profile,email"
+            onlogin="checkLoginState()"
             >
         </div>
+        <div id="status">
+        </div>
+
     </div>
     
-    <script src="script/login.js"></script>
-    <!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0&appId=660377585299971&autoLogAppEvents=1" nonce="AQkJEUOD"></script> -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 
 </body>
 
