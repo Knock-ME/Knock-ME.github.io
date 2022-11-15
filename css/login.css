@@ -1,0 +1,26 @@
+body {
+    margin: 0px;
+    background-image: url(../image/bg5.webp);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+
+}
+.center{
+    padding: 100px;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    background: rgba(185, 226, 243, 0.589);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px, rgba(0, 0, 0, 0.23) 0px 2px 4px;
+    -webkit-backdrop-filter: saturate(180%) blur(7px);
+    backdrop-filter: saturate(180%) blur(7px);
+}
+p{
+    margin-bottom: 50px;
+
+}
