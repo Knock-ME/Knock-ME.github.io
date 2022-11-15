@@ -33,29 +33,29 @@ function checkLoginState()
                 sessionStorage.setItem("id",response.id);
                 sessionStorage.setItem("nm",response.name);
             });
-            FB.api(
-                '/me/picture',
-                'GET',
-                {},
-                function(response) {
-                    // Insert your code here
-                    sessionStorage.setItem("pic",response.data.url);
-                    console.log('id, ' +response.data.url + '.');
+            // FB.api(
+            //     '/me/picture',
+            //     'GET',
+            //     {},
+            //     function(response) {
+            //         // Insert your code here
+            //         sessionStorage.setItem("pic",response.data.url);
+            //         console.log('id, ' +response.data.url + '.');
 
-                }
-              );
+            //     }
+            //   );
         } else {
             console.log('User cancelled login or did not fully authorize.');
         }
     });
-    FB.getLoginStatus(function (response) 
-    {
-        if (response.status === 'connected') 
-        {
-            var accessToken = response.authResponse.accessToken;
+    // FB.getLoginStatus(function (response) 
+    // {
+    //     if (response.status === 'connected') 
+    //     {
+    //         var accessToken = response.authResponse.accessToken;
 
-        }
-    });
+    //     }
+    // });
         
 }
 
