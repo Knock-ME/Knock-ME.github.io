@@ -32,18 +32,23 @@ const currentConfig = {
   nm: "Khan",
   place: "null"
 };
-sessionStorage.setItem("id", "420");
-// sessionStorage.setItem("nm", "Khan");
-// sessionStorage.setItem("place", "null");
 
-if(sessionStorage.getItem("place"))
+//sessionStorage.clear();
+if(!sessionStorage.getItem("id"))
+  location.replace("https://yaminmahdi.github.io/KnockME");
+else
 {
   currentConfig.id=sessionStorage.getItem("id");
   currentConfig.pic=sessionStorage.getItem("pic");
   currentConfig.nm=sessionStorage.getItem("nm");
+}
+//sessionStorage.setItem("id", "420");
+// sessionStorage.setItem("nm", "Khan");
+// sessionStorage.setItem("place", "null");
+
+if(sessionStorage.getItem("place"))
   currentConfig.place=sessionStorage.getItem("place");
 
-}
 
 
 

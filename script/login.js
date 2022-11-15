@@ -22,21 +22,34 @@ window.fbAsyncInit = function () {
     });
 
     FB.AppEvents.logPageView();
-    FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
-        statusChangeCallback(response);        // Returns the login status.
-      });
+    checkLoginState();
 
 };
 
 function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+    FB.api('/me', function (response) {
+        console.log('Successful login for: ' + response.name);
+        document.getElementById('status').innerHTML =
+            'Thanks for logging in, ' + response.name + '!';
+        sessionStorage.setItem("id", response.id);
+        sessionStorage.setItem("nm", response.name);
     });
-  }
-  
+    FB.api(
+        '/me/picture',
+        'GET',
+        { "fields": "url" },
+        function (response) {
+            // Insert your code here
+            sessionStorage.setItem("pic", response);
+            console.log('img url, ' + response + '.');
+
+        }
+    );
+    location.replace("https://yaminmahdi.github.io/KnockME/html/chat_page.htm");
+
+}
+
 // (function (d, s, id) {
 //     var js, fjs = d.getElementsByTagName(s)[0];
 //     if (d.getElementById(id)) { return; }
@@ -79,17 +92,7 @@ function testAPI() {                      // Testing Graph API after login.  See
 //             sessionStorage.setItem("id", response.id);
 //             sessionStorage.setItem("nm", response.name);
 //         });
-//     FB.api(
-//         '/me/picture',
-//         'GET',
-//         { "fields": "url" },
-//         function (response) {
-//             // Insert your code here
-//             sessionStorage.setItem("pic", response);
-//             console.log('id, ' + response + '.');
 
-//         }
-//     );
 
 // }
 
