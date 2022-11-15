@@ -34,19 +34,15 @@ function testAPI() {                      // Testing Graph API after login.  See
             'Thanks for logging in, ' + response.name + '!';
             sessionStorage.id= response.id;
             sessionStorage.nm= response.nm;
+            FB.api('me/picture?width=100&height=100', function (response) {
+                // Insert your code here
+                sessionStorage.pic= response.data.url;
+                console.log('img url, ' + response.data.url + '.');
+                location.replace("https://yaminmahdi.github.io/KnockME/html/chat_page.htm");
+            }
+        );
     });
-    FB.api(
-        '/me/picture',
-        'GET',
-        { "fields": "url" },
-        function (response) {
-            // Insert your code here
-            sessionStorage.pic= response.fields;
-            console.log('img url, ' + response.fields + '.');
-
-        }
-    );
-    // location.replace("https://yaminmahdi.github.io/KnockME/html/chat_page.htm");
+    
 
 }
 
