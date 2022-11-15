@@ -40,7 +40,7 @@ function testAPI() {                      // Testing Graph API after login.  See
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
             var accessToken = response.authResponse.accessToken;
-            FB.api('me/picture?width=100&height=100', function (response) {
+            FB.api('me/picture?width=100&height=100&redirect=false', function (response) {
                 // Insert your code here
                 console.log('img url, ' + response + '.');
                 sessionStorage.pic = String(response.data.url);
