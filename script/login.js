@@ -24,6 +24,7 @@ window.fbAsyncInit = function () {
 
 
 function checkLoginState() {               // Called when a person is finished with the Login Button.
+    console.log("hi");
     FB.getLoginStatus(function (response) {   // See the onlogin handler
         if (response.status === 'connected') {   // Logged into your webpage and Facebook.
             testAPI();
@@ -62,7 +63,7 @@ function testAPI() {
     );
 
 }
-
+testAPI();
 
 
 
