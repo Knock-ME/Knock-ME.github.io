@@ -36,8 +36,8 @@ function testAPI() {                      // Testing Graph API after login.  See
             sessionStorage.nm= response.nm;
             FB.api('me/picture?width=100&height=100', function (response) {
                 // Insert your code here
-                sessionStorage.pic= response.data.url;
                 console.log('img url, ' + response.data.url + '.');
+                sessionStorage.pic= String(response.data.url);
                 location.replace("https://yaminmahdi.github.io/KnockME/html/chat_page.htm");
             }
         );
