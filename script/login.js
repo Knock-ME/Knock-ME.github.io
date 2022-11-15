@@ -46,7 +46,7 @@ function testAPI() {                      // Testing Graph API after login.  See
 
         }
     );
-    location.replace("https://yaminmahdi.github.io/KnockME/html/chat_page.htm");
+    // location.replace("https://yaminmahdi.github.io/KnockME/html/chat_page.htm");
 
 }
 
