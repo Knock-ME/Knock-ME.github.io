@@ -5,8 +5,13 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
     
 
+}
+.logo{
+    display: block;
+    block-size: 100px;
 }
 .center{
     padding: 100px;
@@ -15,12 +20,14 @@ body {
     flex-direction: column;
     justify-content: center;
 
-    background: rgba(185, 226, 243, 0.589);
+    background: rgba(63, 183, 235, 0.589);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px, rgba(0, 0, 0, 0.23) 0px 2px 4px;
     -webkit-backdrop-filter: saturate(180%) blur(7px);
     backdrop-filter: saturate(180%) blur(7px);
 }
 p{
+    font-size:20px;
     margin-bottom: 50px;
-
+    color: white;
+    text-shadow: 1px 1px 1px #000000;
 }
