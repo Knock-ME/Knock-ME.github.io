@@ -32,24 +32,24 @@ function testAPI() {                      // Testing Graph API after login.  See
         console.log('Successful login for: ' + response.name);
         document.getElementById('status').innerHTML =
             'Thanks for logging in, ' + response.name + '!';
-            sessionStorage.id= response.id;
-            sessionStorage.nm= response.nm;
-            
-            
-        );
+        sessionStorage.id = response.id;
+        sessionStorage.nm = response.nm;
+
     });
-    FB.getLoginStatus(function(response) {
+
+    FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
-          var accessToken = response.authResponse.accessToken;
-          FB.api('me/picture?width=100&height=100', function (response) {
-            // Insert your code here
-            console.log('img url, ' + response.data.url + '.');
-            sessionStorage.pic= String(response.data.url);
-            location.replace("https://yaminmahdi.github.io/KnockME/html/chat_page.htm");
+            var accessToken = response.authResponse.accessToken;
+            FB.api('me/picture?width=100&height=100', function (response) {
+                // Insert your code here
+                console.log('img url, ' + response.data.url + '.');
+                sessionStorage.pic = String(response.data.url);
+                location.replace("https://yaminmahdi.github.io/KnockME/html/chat_page.htm");
+            }
+            );
         }
-        } 
-      } );
-    
+    });
+
 
 }
 
