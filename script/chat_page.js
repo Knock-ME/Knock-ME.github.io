@@ -75,7 +75,7 @@ else
 // sessionStorage.setItem("place", "null");
 
 document.querySelector(".profilePic").src=currentConfig.pic;
-document.querySelector(".userName").src=currentConfig.nm;
+document.querySelector(".userName").innerHTML=currentConfig.nm;
 
 
 if(sessionStorage.getItem("place"))
