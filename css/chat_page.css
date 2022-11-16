@@ -112,22 +112,28 @@ p{
     text-align: center;
     padding: 5px;
     position: relative;
-    display: flex;
     border-radius: 10px;
-    margin-bottom: 10px;
     cursor: pointer;
     margin: 10px;
     transition: all 0.4s;
 
 }
+.userProfile:hover{
+    background: rgba(54, 54, 54, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px, rgba(0, 0, 0, 0.23) 0px 2px 4px;
+    -webkit-backdrop-filter: saturate(180%) blur(7px);
+    backdrop-filter: saturate(180%) blur(7px);
+
+}
+
 .userName{
     transition: all 0.4s;
-
+    margin-bottom: 20px;
 }
 
 .profilePic {
     border-radius: 30%;
-    block-size: 40px;
+    block-size: 70px;
     padding: 5px;
 
 }
