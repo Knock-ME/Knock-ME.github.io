@@ -61,7 +61,7 @@ const currentConfig = {
 console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 
 //sessionStorage.clear();
-if(sessionStorage.getItem("id"))
+if(!sessionStorage.getItem("id"))
   location.replace("https://yaminmahdi.github.io/KnockME");
 else
 {
