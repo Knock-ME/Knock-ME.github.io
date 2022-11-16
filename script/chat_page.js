@@ -4,6 +4,32 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase
 
 import { getDatabase, ref, onChildAdded, push, set } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 
+/**
+ * Easy selector helper function
+ */
+ const select = (el, all = false) => {
+  el = el.trim()
+  if (all) {
+    return [...document.querySelectorAll(el)]
+  } else {
+    return document.querySelector(el)
+  }
+}
+/**
+ * Easy event listener function
+ */
+const on = (type, el, listener, all = false) => {
+  let selectEl = select(el, all)
+  if (selectEl) {
+    if (all) {
+      selectEl.forEach(e => e.addEventListener(type, listener))
+    } else {
+      selectEl.addEventListener(type, listener)
+    }
+  }
+}
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDUNlPtR8BjUNmfLSReG7VL4PwZI8LfUmo",
   authDomain: "knockme-web.firebaseapp.com",
@@ -35,7 +61,7 @@ const currentConfig = {
 console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 
 //sessionStorage.clear();
-if(!sessionStorage.getItem("id"))
+if(sessionStorage.getItem("id"))
   location.replace("https://yaminmahdi.github.io/KnockME");
 else
 {
@@ -48,44 +74,30 @@ else
 // sessionStorage.setItem("nm", "Khan");
 // sessionStorage.setItem("place", "null");
 
+document.querySelector(".profilePic").src=currentConfig.pic;
+document.querySelector(".userName").src=currentConfig.nm;
+
+
 if(sessionStorage.getItem("place"))
   currentConfig.place=sessionStorage.getItem("place");
 
-
-
-
-/**
- * Easy selector helper function
- */
-const select = (el, all = false) => {
-  el = el.trim()
-  if (all) {
-    return [...document.querySelectorAll(el)]
-  } else {
-    return document.querySelector(el)
-  }
-}
-/**
- * Easy event listener function
- */
-const on = (type, el, listener, all = false) => {
-  let selectEl = select(el, all)
-  if (selectEl) {
-    if (all) {
-      selectEl.forEach(e => e.addEventListener(type, listener))
-    } else {
-      selectEl.addEventListener(type, listener)
-    }
-  }
-}
-
+select('body').classList.toggle('mobile-nav-active');
+// function tabToggle()
+// {
+//   select('body').classList.toggle('mobile-nav-active')
+//   document.querySelector(".mobile-nav-toggle").classList.toggle('bi-x')
+// }
+// tabToggle();
 /**
  * Mobile nav toggle
  */
 on('click', '.mobile-nav-toggle', function (e) {
-  select('body').classList.toggle('mobile-nav-active')
-  this.classList.toggle('bi-x')
+  //tabToggle();
+  select('body').classList.toggle('mobile-nav-active');
+  this.classList.toggle('bi-x');
 })
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -105,14 +117,54 @@ function bonomaya()
   sessionStorage.setItem("place", "bonomaya");
   document.querySelector(".pPicInner").src="../image/bonomaya.jpg";
   document.querySelector("#bonomaya").setAttribute("class", "tab tabSelected placeNm");
+  document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
+  document.querySelector("#library").setAttribute("class", "tab placeNm");
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Bonomaya";
+  document.querySelector(".msgView").style.visibility = 'visible';
+}
+function foodcourt()
+{
+  currentConfig.place="foodcourt";
+  sessionStorage.setItem("place", "foodcourt");
+  document.querySelector(".pPicInner").src="../image/food_court.jpg";
+  document.querySelector("#bonomaya").setAttribute("class", "tab placeNm");
+  document.querySelector("#foodcourt").setAttribute("class", "tab tabSelected placeNm");
+  document.querySelector("#library").setAttribute("class", "tab placeNm");  
+  document.querySelector(".conversation").innerHTML="";
+  document.querySelector(".pNameInner").innerHTML="Food Court";
+  document.querySelector(".msgView").style.visibility = 'visible';
+}
+
+function library()
+{
+  currentConfig.place="library";
+  sessionStorage.setItem("place", "library");
+  document.querySelector(".pPicInner").src="../image/library.jpg";
+  document.querySelector("#bonomaya").setAttribute("class", "tab placeNm");
+  document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
+  document.querySelector("#library").setAttribute("class", "tab tabSelected placeNm");    document.querySelector(".conversation").innerHTML="";
+  document.querySelector(".pNameInner").innerHTML="Library";
   document.querySelector(".msgView").style.visibility = 'visible';
 }
 
 on('click', '#bonomaya', function (e) {
   //if(e.id=="bonomaya")
   bonomaya();
+  select('body').classList.toggle('mobile-nav-active');
+  refresh();
+})
+
+on('click', '#foodcourt', function (e) {
+  //if(e.id=="bonomaya")
+  foodcourt();
+  select('body').classList.toggle('mobile-nav-active');
+  refresh();
+})
+
+on('click', '#library', function (e) {
+  //if(e.id=="bonomaya")
+  library();
   select('body').classList.toggle('mobile-nav-active');
   refresh();
 })

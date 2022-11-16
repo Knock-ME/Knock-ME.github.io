@@ -178,6 +178,7 @@ p{
     box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px, rgba(0, 0, 0, 0.23) 0px 2px 4px;
     -webkit-backdrop-filter: saturate(180%) blur(7px);
     backdrop-filter: saturate(180%) blur(7px);
+    transition: all 0.4s;
 
 
 }
