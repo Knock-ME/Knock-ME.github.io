@@ -80,9 +80,7 @@ document.querySelector(".userName").innerHTML=currentConfig.nm;
 
 if(sessionStorage.getItem("place"))
   currentConfig.place=sessionStorage.getItem("place");
-
-
-if(window.innerWidth<=786)
+else if(window.innerWidth<=786)
   select('body').classList.toggle('mobile-nav-active');
 // function tabToggle()
 // {
