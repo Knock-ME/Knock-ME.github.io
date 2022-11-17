@@ -1,9 +1,8 @@
-// import { getDatabase, ref, onChildAdded, push, set ,initializeApp, getAnalytics} from "./firebase_module.js"
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"
 
 import { getDatabase, ref, onChildAdded, push, set, onValue, increment} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
-import { getStorage, uploadBytesResumable,ref as rff, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
+//import { getStorage, uploadBytesResumable,ref as rff, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
 
 /**
  * Easy selector helper function
@@ -274,71 +273,15 @@ const msg = {
   nm: "unknown",
   pic: "../image/dp.png"
 };
-function loadXHR(url) {
 
-  return new Promise(function(resolve, reject) {
-      try {
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", url);
-          xhr.responseType = "blob";
-          xhr.onerror = function() {reject("Network error.")};
-          xhr.onload = function() {
-              if (xhr.status === 200) {resolve(xhr.response)}
-              else {reject("Loading error:" + xhr.statusText)}
-          };
-          xhr.send();
-      }
-      catch(err) {reject(err.message)}
-  });
-}
 on('click', '.sendBtn', function (e) 
 {
 
   // Create a new post reference with an auto-generated id
   msg.id=currentConfig.id;
+  msg.pic=currentConfig.pic;
   msg.nm=currentConfig.nm;
   msg.msg=document.querySelector(".editTxt").value;
-
-  const storageRef = rff(storage,"dp/"+msg.id+".jpg");
-  loadXHR(currentConfig.pic).then(blob => 
-  {
-    //uploading blob to firebase storage
-    const uploadTask = uploadBytesResumable(storageRef, blob);
-    uploadTask.on('state_changed', 
-    (snapshot) => {
-      // Observe state change events such as progress, pause, and resume
-      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log('Upload is ' + progress + '% done');
-      switch (snapshot.state) {
-        case 'paused':
-          console.log('Upload is paused');
-          break;
-        case 'running':
-          console.log('Upload is running');
-          break;
-      }
-    }, 
-    (error) => {
-      // Handle unsuccessful uploads
-      console.error(error);
-    },   
-    ()=> 
-      {
-        // Handle successful uploads on complete
-        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        getDownloadURL(uploadTask.snapshot.ref).then(url => 
-          {
-          //console.log("Firebase storage image uploaded : ", url); 
-          msg.pic=url;
-          sendMsg(msg);
-          });
-      });
-    }).catch(error => {
-      console.error(error);
-  });
-
-  //msg.pic=currentConfig.pic;
 
   if(msg.msg=="/last")
     getLastUserInfo();
