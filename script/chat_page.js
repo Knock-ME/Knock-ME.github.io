@@ -285,7 +285,7 @@ input.addEventListener("keypress", function(event) {
   }
 });
 var userCount =0,userExist=0,count=0;
-const userCountRef = ref(db, "userInfo/userCount");
+const userCountRef = ref(db, "userInfo/count/users");
 onValue(userCountRef, (snapshot) => {
   userCount = parseInt(snapshot.val());
 });
