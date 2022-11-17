@@ -300,8 +300,14 @@ function isUserExist()
     count++;
     if(data.key==currentConfig.id)
       userExist=1;
-    if(userExist==1&&count==userCount)
+    if(userExist==0&&count==userCount)
+    {
+      console.log("New User");
       storeNewUserId();
+    }
+    else
+      console.log("No New User");
+
   });
 
 }
@@ -330,6 +336,7 @@ function storeNewUserId()
       user.loc=response.city+", "+response.stateProv+", "+response.countryName;
       set(newUserRef, user);
       set(ref(db, "userInfo"), {userCount: increment(1)});
+      console.log("New User Added");
     }
   };
   xhr.open('GET', endpoint, true);
