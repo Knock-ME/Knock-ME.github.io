@@ -62,7 +62,7 @@ console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 
 //sessionStorage.clear();
 if(!sessionStorage.getItem("id"))
-  location.replace("https://yaminmahdi.github.io/KnockME");
+  location.replace("../");
 else
 {
   currentConfig.id=sessionStorage.getItem("id");
@@ -80,19 +80,17 @@ if(sessionStorage.getItem("place"))
   currentConfig.place=sessionStorage.getItem("place");
 else if(window.innerWidth<=786)
   select('body').classList.toggle('mobile-nav-active');
-// function tabToggle()
-// {
-//   select('body').classList.toggle('mobile-nav-active')
-//   document.querySelector(".mobile-nav-toggle").classList.toggle('bi-x')
-// }
-// tabToggle();
+function tabToggle()
+{
+  select('body').classList.toggle('mobile-nav-active')
+  document.querySelector(".mobile-nav-toggle").classList.toggle('bi-x')
+}
 /**
  * Mobile nav toggle
  */
 on('click', '.mobile-nav-toggle', function (e) {
   //tabToggle();
-  select('body').classList.toggle('mobile-nav-active');
-  this.classList.toggle('bi-x');
+  tabToggle();
 })
 
 
@@ -165,7 +163,7 @@ function other()
   document.querySelector("#library").setAttribute("class", "tab placeNm");    
   document.querySelector("#other").setAttribute("class", "tab tabSelected placeNm");
   document.querySelector(".conversation").innerHTML="";
-  document.querySelector(".pNameInner").innerHTML="Random Persons from the Internet";
+  document.querySelector(".pNameInner").innerHTML="Random Peoples from Random Places";
   document.querySelector(".msgView").style.visibility = 'visible';
 }
 
@@ -173,25 +171,28 @@ on('click', '#bonomaya', function (e) {
   //if(e.id=="bonomaya")
   bonomaya();
   if(window.innerWidth<=786)
-    select('body').classList.toggle('mobile-nav-active');
+    tabToggle();
   refresh();
 })
 
 on('click', '#foodcourt', function (e) {
   foodcourt();
-  select('body').classList.toggle('mobile-nav-active');
+  if(window.innerWidth<=786)
+    tabToggle();
   refresh();
 })
 
 on('click', '#library', function (e) {
   library();
-  select('body').classList.toggle('mobile-nav-active');
+  if(window.innerWidth<=786)
+    tabToggle();
   refresh();
 })
 
 on('click', '#other', function (e) {
   other();
-  select('body').classList.toggle('mobile-nav-active');
+  if(window.innerWidth<=786)
+    tabToggle();
   refresh();
 })
 
@@ -211,12 +212,12 @@ function refresh()
 refresh();
 
 on('click', '.KnockME', function (e) {
-  location.replace("https://yaminmahdi.github.io/KnockME/html/chat_page.htm");
+  location.replace("chat_page.htm");
 })
 
 on('click', '.logoutBtn', function (e) {
   sessionStorage.clear();
-  location.replace("https://yaminmahdi.github.io/KnockME");
+  location.replace("../");
 })
 
 

@@ -44,7 +44,7 @@ function testAPI() {                      // Testing Graph API after login.  See
                 // Insert your code here
                 console.log('img url, ' + response + '.');
                 sessionStorage.pic = String(response.data.url);
-                location.replace("https://yaminmahdi.github.io/KnockME/html/chat_page.htm");
+                location.replace("html/chat_page.htm");
             });
         }
     });
