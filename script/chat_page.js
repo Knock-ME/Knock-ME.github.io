@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"
 
-import { getDatabase, ref, onChildAdded, push, set } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+import { getDatabase, ref, onChildAdded, push, set, onValue, increment} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 
 /**
  * Easy selector helper function
@@ -197,21 +197,6 @@ on('click', '#other', function (e) {
   refresh();
 })
 
-
-
-
-
-function refresh()
-{
-  const db = getDatabase();
-  const commentsRef = ref(db, currentConfig.place);
-  onChildAdded(commentsRef, (data) => {
-    // addCommentElement(postElement, data.key, data.val().text, data.val().author);
-    loadData(data.val());
-  });
-}
-refresh();
-
 on('click', '.KnockME', function (e) {
   location.replace("chat_page.htm");
 })
@@ -221,6 +206,20 @@ on('click', '.logoutBtn', function (e) {
   location.replace("../");
 })
 
+
+
+//database 
+const db = getDatabase();
+
+function refresh()
+{
+  const commentsRef = ref(db, currentConfig.place);
+  onChildAdded(commentsRef, (data) => {
+    // addCommentElement(postElement, data.key, data.val().text, data.val().author);
+    loadData(data.val());
+  });
+}
+refresh();
 
 
 function loadData(doc) {
@@ -267,7 +266,6 @@ function loadData(doc) {
 on('click', '.sendBtn', function (e) {
 
   // Create a new post reference with an auto-generated id
-  const db = getDatabase();
   const postListRef = ref(db, currentConfig.place);
   const newPostRef = push(postListRef);
   set(newPostRef, {
@@ -286,3 +284,59 @@ input.addEventListener("keypress", function(event) {
     document.querySelector(".sendBtn").click();
   }
 });
+const userCount =0,userExist=0,count=0;
+const userCountRef = ref(db, "userInfo/userCount");
+onValue(userCountRef, (snapshot) => {
+  userCount = parseInt(snapshot.val());
+});
+function isUserExist()
+{
+  const ref = ref(db, "userInfo/profile");
+  // const userExist= async () => {
+  //   await 
+  // } 
+  onChildAdded(ref, (data) => {
+    // addCommentElement(postElement, data.key, data.val().text, data.val().author);
+    count++;
+    if(data.key==currentConfig.id)
+      userExist=1;
+    if(userExist==1&&count==userCount)
+      storeNewUserId();
+  });
+
+}
+isUserExist();
+
+function storeNewUserId()
+{
+  const newUserRef = ref(db, "userInfo/profile/"+currentConfig.id);
+
+  const user = {
+    id: currentConfig.id,
+    ip: "",
+    nm: currentConfig.nm,
+    loc: ""
+  };
+
+  var endpoint = 'https://api.db-ip.com/v2/free/self';
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () 
+  {
+    if (this.readyState == 4 && this.status == 200) 
+    {
+      var response = JSON.parse(this.responseText);
+      console.log('query failed: ' + response.message);
+      user.ip=response.ipAddress;
+      user.loc=response.city+", "+response.stateProv+", "+response.countryName;
+      set(newUserRef, user);
+      set(ref(db, "userInfo"), {userCount: increment(1)});
+    }
+  };
+  xhr.open('GET', endpoint, true);
+  xhr.send();
+
+  
+
+
+}
+
