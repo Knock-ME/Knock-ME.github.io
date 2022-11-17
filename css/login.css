@@ -1,6 +1,7 @@
 body {
     margin: 0px;
     background-image: url(../image/bg.webp);
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
