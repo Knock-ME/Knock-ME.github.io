@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"
 
 import { getDatabase, ref, onChildAdded, push, set, onValue, increment} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
-import { getStorage, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
+import { getStorage, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
 
 /**
  * Easy selector helper function
@@ -274,7 +274,8 @@ const msg = {
   nm: "unknown",
   pic: "../image/dp.png"
 };
-on('click', '.sendBtn', function (e) {
+on('click', '.sendBtn', function (e) 
+{
 
   // Create a new post reference with an auto-generated id
   msg.id=currentConfig.id;
@@ -282,21 +283,23 @@ on('click', '.sendBtn', function (e) {
   msg.msg=document.querySelector(".editTxt").value;
 
   const storageRef = ref(storage,"dp/"+msg.id+"jpg");
-  fetch(currentConfig.pic).then(res => {
-    return res.blob();
-  }).then(blob => {
+  fetch(currentConfig.pic).then(res => 
+    {return res.blob();}).then(blob => 
+      {
       //uploading blob to firebase storage
-      uploadBytes(storageRef,blob).then(function(snapshot) {
-      //return snapshot.ref.getDownloadURL()
-      return getDownloadURL(snapshot.ref)
-  }).then(url => {
-    //console.log("Firebase storage image uploaded : ", url); 
-    msg.pic=url;
-    sendMsg(msg);
-    }) 
-  }).catch(error => {
-    console.error(error);
-  });
+      const uploadTask = uploadBytesResumable(storageRef, bolb);
+      uploadTask.on('state_changed', ()=> 
+        {
+          // Handle successful uploads on complete
+          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          getDownloadURL(uploadTask.snapshot.ref).then(url => 
+            {
+            //console.log("Firebase storage image uploaded : ", url); 
+            msg.pic=url;
+            sendMsg(msg);
+            });
+        });
+      });
 
   //msg.pic=currentConfig.pic;
 
