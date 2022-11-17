@@ -224,8 +224,6 @@ refresh();
 
 
 function loadData(doc) {
-  if(doc.id!="69")
-    lastMsgUserId=doc.id;
   const fragment = document.createDocumentFragment();
   // const loader = document.querySelector(".loader");
 
@@ -254,7 +252,8 @@ function loadData(doc) {
   msg.innerHTML = doc.msg;
   if(doc.msg=="/last")
     msg.style.color = "steelblue";
-
+  else if(doc.id!="69")
+    lastMsgUserId=doc.id;
   fragment.appendChild(newMsg);
   newMsg.appendChild(proPic);
   newMsg.appendChild(msgInfo);
@@ -278,7 +277,7 @@ on('click', '.sendBtn', function (e) {
   // Create a new post reference with an auto-generated id
   msg.id=currentConfig.id;
   msg.pic=currentConfig.pic;
-  msg.nm=currentConfig.id;
+  msg.nm=currentConfig.nm;
   msg.msg=document.querySelector(".editTxt").value;
   sendMsg(msg);
   if(msg.msg=="/last")
@@ -369,7 +368,7 @@ function getLastUserInfo()
       msg.id="69";
       msg.pic="../image/bot.png";
       msg.nm="Security Bot";
-      msg.msg="User Name&#9;: "+data.val().nm+"\nUser ID&#9;&#9;: "+data.key+"Location&#9;: "+data.val().loc+"\nUser IP&#9;&#9;: "+data.val().ip;
+      msg.msg="User Name : "+data.val().nm+"<br>User ID&emsp;&emsp;: "+data.key+"<br>Location&emsp;&nbsp;: "+data.val().loc+"<br>User IP&emsp;&emsp;: "+data.val().ip;
       //loadData(botMsg);
       sendMsg(msg);
     }
