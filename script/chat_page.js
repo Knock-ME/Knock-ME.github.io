@@ -99,7 +99,7 @@ on('click', '.mobile-nav-toggle', function (e) {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const storage = getStorage(app);
+//const storage = getStorage(app);
 
 if(!sessionStorage.getItem("place"))
   document.querySelector(".msgView").style.visibility = 'hidden';
