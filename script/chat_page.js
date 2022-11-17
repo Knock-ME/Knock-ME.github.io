@@ -281,7 +281,7 @@ on('click', '.sendBtn', function (e) {
   msg.nm=currentConfig.nm;
   msg.msg=document.querySelector(".editTxt").value;
 
-  const storageRef = ref(storage,"dp/"+msg.id+"jpg")
+  const storageRef = ref(storage,"dp/"+msg.id+"jpg");
   fetch(currentConfig.pic).then(res => {
     return res.blob();
   }).then(blob => {
