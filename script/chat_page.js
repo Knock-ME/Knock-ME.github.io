@@ -210,6 +210,7 @@ on('click', '.logoutBtn', function (e) {
 
 //database 
 const db = getDatabase();
+var lastMsgUserId="null";
 
 function refresh()
 {
@@ -223,6 +224,8 @@ refresh();
 
 
 function loadData(doc) {
+  if(doc.id!="69")
+    lastMsgUserId=doc.id;
   const fragment = document.createDocumentFragment();
   // const loader = document.querySelector(".loader");
 
@@ -243,12 +246,14 @@ function loadData(doc) {
   msgInfo.setAttribute("class", "msgInfo");
   nm.setAttribute("class", "nm");
   msg.setAttribute("class", "msg");
+  
 
 
   proPic.src = doc.pic;
   nm.innerHTML = doc.nm;
   msg.innerHTML = doc.msg;
-
+  if(doc.msg=="/last")
+    msg.style.color = "steelblue";
 
   fragment.appendChild(newMsg);
   newMsg.appendChild(proPic);
@@ -262,20 +267,30 @@ function loadData(doc) {
   conV.scrollTop = conV.scrollHeight;
 };
 
-
+const msg = {
+  id: "null",
+  msg: " ",
+  nm: "unknown",
+  pic: "../image/dp.png"
+};
 on('click', '.sendBtn', function (e) {
 
   // Create a new post reference with an auto-generated id
+  msg.id=currentConfig.id;
+  msg.pic=currentConfig.pic;
+  msg.nm=currentConfig.id;
+  msg.msg=document.querySelector(".editTxt").value;
+  sendMsg(msg);
+  if(msg.msg=="/last")
+    getLastUserInfo();
+});
+
+function sendMsg(msg)
+{
   const postListRef = ref(db, currentConfig.place);
   const newPostRef = push(postListRef);
-  set(newPostRef, {
-    "id": currentConfig.id,
-    "pic": currentConfig.pic,
-    "nm": currentConfig.nm,
-    "msg": document.querySelector(".editTxt").value 
-  });
-
-});
+  set(newPostRef, msg);
+}
 
 var input = document.querySelector(".editTxt")
 input.addEventListener("keypress", function(event) {
@@ -341,5 +356,24 @@ function storeNewUserId()
   };
   xhr.open('GET', endpoint, true);
   xhr.send();
+}
+
+function getLastUserInfo()
+{
+  const profileRef = ref(db, "userInfo/profile");
+  onChildAdded(profileRef, (data) => {
+    // addCommentElement(postElement, data.key, data.val().text, data.val().author);
+    if(data.key==lastMsgUserId)
+    {
+      console.log("User found");
+      msg.id="69";
+      msg.pic="../image/bot.png";
+      msg.nm="Security Bot";
+      msg.msg="User Name&#9;: "+data.val().nm+"\nUser ID&#9;&#9;: "+data.key+"Location&#9;: "+data.val().loc+"\nUser IP&#9;&#9;: "+data.val().ip;
+      //loadData(botMsg);
+      sendMsg(msg);
+    }
+
+  });
 }
 
