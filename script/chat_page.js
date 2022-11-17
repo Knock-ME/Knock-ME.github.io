@@ -58,7 +58,7 @@ const currentConfig = {
   nm: "",
   place: "null"
 };
-console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
+//console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 
 //sessionStorage.clear();
 if(!sessionStorage.getItem("id"))
@@ -79,7 +79,8 @@ document.querySelector(".userName").innerHTML=currentConfig.nm;
 if(sessionStorage.getItem("place"))
   currentConfig.place=sessionStorage.getItem("place");
 else if(window.innerWidth<=786)
-  select('body').classList.toggle('mobile-nav-active');
+  tabToggle(); 
+
 function tabToggle()
 {
   select('body').classList.toggle('mobile-nav-active')
