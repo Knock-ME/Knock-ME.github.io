@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"
 
 import { getDatabase, ref, onChildAdded, push, set, onValue, increment} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
-import { getStorage, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
+import { getStorage, uploadBytesResumable,ref as rff, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
 
 /**
  * Easy selector helper function
@@ -282,7 +282,7 @@ on('click', '.sendBtn', function (e)
   msg.nm=currentConfig.nm;
   msg.msg=document.querySelector(".editTxt").value;
 
-  const storageRef = ref(storage,"dp/"+msg.id+"jpg");
+  const storageRef = rff(storage,"dp/"+msg.id+".jpg");
   fetch(currentConfig.pic).then(res => 
     {return res.blob();}).then(blob => 
       {
