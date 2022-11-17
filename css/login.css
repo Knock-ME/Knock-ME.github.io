@@ -1,6 +1,6 @@
 body {
     margin: 0px;
-    background-image: url(../image/bg5.webp);
+    background-image: url(../image/bg.webp);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,10 +20,10 @@ body {
     flex-direction: column;
     justify-content: center;
     border-radius: 15px;
-    background: rgba(63, 183, 235, 0.589);
+    background: rgba(63, 183, 235, 0.39);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px, rgba(0, 0, 0, 0.23) 0px 2px 4px;
-    -webkit-backdrop-filter: saturate(180%) blur(7px);
-    backdrop-filter: saturate(180%) blur(7px);
+    -webkit-backdrop-filter: saturate(180%) blur(2px);
+    backdrop-filter: saturate(180%) blur(2px);
 }
 p{
     
@@ -33,6 +33,7 @@ p{
 .info{
     font-size:20px;
     margin-bottom: 50px;
+    text-align: center;
 }
 .status
 {

@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KnockME</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../image/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../image/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../image/favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+
     <link rel="stylesheet" href="../css/chat_page.css">
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -16,7 +22,15 @@
 </head>
 <body >
 
-    <header class="nav">
+    <header class="header">
+        <a href="#">
+            <img src="../image/logo.png" alt="KnockME" class="KnockME">
+        </a>
+        <button class="material-symbols-outlined logoutBtn" style="font-size:30px;color:rgb(224, 224, 224);">logout</button>
+
+        
+    </header>
+    <nav class="nav">
         <div class="userProfile" onclick="profile()">
             <img src="../image/dp.png" alt="" class="profilePic">
             <p class="userName"></p>
@@ -34,8 +48,12 @@
             <img src="../image/library.jpg" alt="" class="placePic">
             <p class="pName">Library</p>
         </div>
+        <div class="tab placeNm" id="other"">
+            <img src="../image/other.jpg" alt="" class="placePic">
+            <p class="pName">Random Persons</p>
+        </div>
         
-    </header>
+    </nav>
     <div class="container">
 
         <section class="msgView">

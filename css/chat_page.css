@@ -1,15 +1,50 @@
 body {
     margin: 0px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-image: url(../image/bg5.webp);
+    background-image: url(../image/bg.webp);
 
 }
 p{
     margin: 0px;
 
 }
+.header
+{
+    margin: 20px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(116, 183, 245, 0.103);
+    -webkit-backdrop-filter: saturate(180%) blur(7px);
+    backdrop-filter: saturate(180%) blur(7px);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 4px, rgba(0, 0, 0, 0.23) 0px 3px 4px;
+    
+    border-radius: 10px;
+}
+.header img{
+    block-size: 100px;
 
+}
+.header a:visited {
+    color: rgb(250, 250, 250);
+  }
+.logoutBtn {
+    border: none;
+    margin-right: 15px;
+    border-radius: 10px;
+    padding: 7px 16px 7px 20px ;
+    background: rgba(241, 50, 50, 0.2);
+    -webkit-backdrop-filter: saturate(180%) blur(7px);
+    backdrop-filter: saturate(180%) blur(7px);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 4px, rgba(0, 0, 0, 0.23) 0px 3px 4px; 
+    transition: all 0.4s;
 
+}
+.logoutBtn:hover{
+    background: rgba(241, 50, 50, 0.397);
+
+}
 .nav {
     display: flex;
     flex-direction: column;
@@ -17,17 +52,17 @@ p{
     margin: 20px;
     padding: 5px;
 
-    background: rgba(117, 116, 116, 0.2);
+    background: rgba(116, 183, 245, 0.103);
     -webkit-backdrop-filter: saturate(180%) blur(7px);
     backdrop-filter: saturate(180%) blur(7px);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 4px, rgba(0, 0, 0, 0.23) 0px 3px 4px;
     
     border-radius: 10px;
     position: fixed;
-    top: 0;
+    top: 123px;
     left: 0;
-    bottom: 0;
-    width: 200px;
+    bottom: 6px;
+    width: 260px;
     transition: all ease-in-out 0.5s;
     z-index: 2;
     transition: all 0.5s;
@@ -38,7 +73,7 @@ p{
 
 .container {
     display: flex;
-    height: 100vh;
+    height: calc(100vh - 130px);
     
 }
 .msgView {
@@ -49,10 +84,9 @@ p{
     display: flex;
     flex-direction: column;
     padding: 10px;
-    margin-left: 250px;
+    margin-left: 310px;
 
-    background: rgba(117, 116, 116, 0.2);
-
+    background: rgba(116, 183, 245, 0.103);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
 }
@@ -188,15 +222,7 @@ p{
 
 
 }
-.conversation{
-        /* width: calc(100% - 300px); */
 
-    height:calc(100% - 150px); 
-    overflow:hidden; 
-    overflow-y:scroll;
-    padding-bottom: 10px;
-
-}
 .placeNm
 {
     display: flex;
@@ -216,6 +242,9 @@ p{
     backdrop-filter: saturate(180%) blur(7px);
 
 }
+.pNameInner{
+    margin-left: 5px;
+}
 .proPic {
     border-radius: 50%;
     block-size: 30px;
@@ -223,7 +252,15 @@ p{
     box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px, rgba(0, 0, 0, 0.23) 0px 2px 4px;
 
 }
+.conversation{
+    /* width: calc(100% - 300px); */
 
+height:calc(100% - 150px); 
+overflow:hidden; 
+overflow-y:scroll;
+padding-bottom: 10px;
+
+}
 .otherMsg {
     display: flex;
     padding-top: 10px;

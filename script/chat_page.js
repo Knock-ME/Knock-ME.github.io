@@ -70,9 +70,7 @@ else
   currentConfig.nm=sessionStorage.getItem("nm");
   console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 }
-//sessionStorage.setItem("id", "420");
-// sessionStorage.setItem("nm", "Khan");
-// sessionStorage.setItem("place", "null");
+
 
 document.querySelector(".profilePic").src=currentConfig.pic;
 document.querySelector(".userName").innerHTML=currentConfig.nm;
@@ -119,6 +117,7 @@ function bonomaya()
   document.querySelector("#bonomaya").setAttribute("class", "tab tabSelected placeNm");
   document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
   document.querySelector("#library").setAttribute("class", "tab placeNm");
+  document.querySelector("#other").setAttribute("class", "tab placeNm");
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Bonomaya";
   document.querySelector(".msgView").style.visibility = 'visible';
@@ -130,7 +129,8 @@ function foodcourt()
   document.querySelector(".pPicInner").src="../image/food_court.jpg";
   document.querySelector("#bonomaya").setAttribute("class", "tab placeNm");
   document.querySelector("#foodcourt").setAttribute("class", "tab tabSelected placeNm");
-  document.querySelector("#library").setAttribute("class", "tab placeNm");  
+  document.querySelector("#library").setAttribute("class", "tab placeNm"); 
+  document.querySelector("#other").setAttribute("class", "tab placeNm"); 
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Food Court";
   document.querySelector(".msgView").style.visibility = 'visible';
@@ -143,28 +143,49 @@ function library()
   document.querySelector(".pPicInner").src="../image/library.jpg";
   document.querySelector("#bonomaya").setAttribute("class", "tab placeNm");
   document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
-  document.querySelector("#library").setAttribute("class", "tab tabSelected placeNm");    document.querySelector(".conversation").innerHTML="";
+  document.querySelector("#library").setAttribute("class", "tab tabSelected placeNm");
+  document.querySelector("#other").setAttribute("class", "tab placeNm");
+  document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Library";
+  document.querySelector(".msgView").style.visibility = 'visible';
+}
+
+function other()
+{
+  currentConfig.place="other";
+  sessionStorage.setItem("place", "other");
+  document.querySelector(".pPicInner").src="../image/library.jpg";
+  document.querySelector("#bonomaya").setAttribute("class", "tab placeNm");
+  document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
+  document.querySelector("#library").setAttribute("class", "tab placeNm");    
+  document.querySelector("#other").setAttribute("class", "tab tabSelected placeNm");
+  document.querySelector(".conversation").innerHTML="";
+  document.querySelector(".pNameInner").innerHTML="Random Persons from the Internet";
   document.querySelector(".msgView").style.visibility = 'visible';
 }
 
 on('click', '#bonomaya', function (e) {
   //if(e.id=="bonomaya")
   bonomaya();
-  select('body').classList.toggle('mobile-nav-active');
+  if(window.innerWidth<=786)
+    select('body').classList.toggle('mobile-nav-active');
   refresh();
 })
 
 on('click', '#foodcourt', function (e) {
-  //if(e.id=="bonomaya")
   foodcourt();
   select('body').classList.toggle('mobile-nav-active');
   refresh();
 })
 
 on('click', '#library', function (e) {
-  //if(e.id=="bonomaya")
   library();
+  select('body').classList.toggle('mobile-nav-active');
+  refresh();
+})
+
+on('click', '#other', function (e) {
+  other();
   select('body').classList.toggle('mobile-nav-active');
   refresh();
 })
@@ -184,7 +205,14 @@ function refresh()
 }
 refresh();
 
+on('click', '.KnockME', function (e) {
+  location.replace("https://yaminmahdi.github.io/KnockME/html/chat_page.htm");
+})
 
+on('click', '.logoutBtn', function (e) {
+  sessionStorage.clear();
+  location.replace("https://yaminmahdi.github.io/KnockME");
+})
 
 
 
@@ -226,7 +254,8 @@ function loadData(doc) {
   var conV = document.querySelector(".conversation");
   conV.appendChild(newMsg);
   conV.scrollTop = conV.scrollHeight;
-}
+};
+
 
 on('click', '.sendBtn', function (e) {
 
@@ -241,4 +270,12 @@ on('click', '.sendBtn', function (e) {
     "msg": document.querySelector(".editTxt").value 
   });
 
-})
+});
+
+var input = document.querySelector(".editTxt")
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.querySelector(".sendBtn").click();
+  }
+});
