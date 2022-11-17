@@ -335,15 +335,11 @@ function storeNewUserId()
       user.ip=response.ipAddress;
       user.loc=response.city+", "+response.stateProv+", "+response.countryName;
       set(newUserRef, user);
-      set(ref(db, "userInfo"), {userCount: increment(1)});
+      set(ref(db, "userInfo/count"), {users: increment(1)});
       console.log("New User Added");
     }
   };
   xhr.open('GET', endpoint, true);
   xhr.send();
-
-  
-
-
 }
 
