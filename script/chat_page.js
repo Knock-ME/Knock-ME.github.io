@@ -106,7 +106,12 @@ if(!sessionStorage.getItem("place"))
 
 if(sessionStorage.getItem("place")=="bonomaya")
   bonomaya();
- 
+else if(sessionStorage.getItem("place")=="foodcourt")
+  foodcourt();
+else if(sessionStorage.getItem("place")=="library")
+  library();
+else if(sessionStorage.getItem("place")=="other")
+  other();
  
 
 function bonomaya()
@@ -154,7 +159,7 @@ function other()
 {
   currentConfig.place="other";
   sessionStorage.setItem("place", "other");
-  document.querySelector(".pPicInner").src="../image/library.jpg";
+  document.querySelector(".pPicInner").src="../image/other.jpg";
   document.querySelector("#bonomaya").setAttribute("class", "tab placeNm");
   document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
   document.querySelector("#library").setAttribute("class", "tab placeNm");    
