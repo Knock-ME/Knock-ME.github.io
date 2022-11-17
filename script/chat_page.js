@@ -3,6 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"
 
 import { getDatabase, ref, onChildAdded, push, set, onValue, increment} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+import { getStorage, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
 
 /**
  * Easy selector helper function
@@ -99,6 +100,7 @@ on('click', '.mobile-nav-toggle', function (e) {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const storage = getStorage(app);
 
 if(!sessionStorage.getItem("place"))
   document.querySelector(".msgView").style.visibility = 'hidden';
@@ -276,10 +278,28 @@ on('click', '.sendBtn', function (e) {
 
   // Create a new post reference with an auto-generated id
   msg.id=currentConfig.id;
-  msg.pic=currentConfig.pic;
   msg.nm=currentConfig.nm;
   msg.msg=document.querySelector(".editTxt").value;
-  sendMsg(msg);
+
+  const storageRef = ref(storage,"dp/"+msg.id+"jpg")
+  fetch(currentConfig.pic).then(res => {
+    return res.blob();
+  }).then(blob => {
+      //uploading blob to firebase storage
+      uploadBytes(storageRef,blob).then(function(snapshot) {
+      //return snapshot.ref.getDownloadURL()
+      return getDownloadURL(snapshot.ref)
+  }).then(url => {
+    //console.log("Firebase storage image uploaded : ", url); 
+    msg.pic=url;
+    sendMsg(msg);
+    }) 
+  }).catch(error => {
+    console.error(error);
+  });
+
+  //msg.pic=currentConfig.pic;
+
   if(msg.msg=="/last")
     getLastUserInfo();
 });
