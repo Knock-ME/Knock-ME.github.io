@@ -68,7 +68,7 @@ else
   currentConfig.id=sessionStorage.getItem("id");
   currentConfig.pic=sessionStorage.getItem("pic");
   currentConfig.nm=sessionStorage.getItem("nm");
-  console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
+  //console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 }
 
 
@@ -284,18 +284,18 @@ input.addEventListener("keypress", function(event) {
     document.querySelector(".sendBtn").click();
   }
 });
-const userCount =0,userExist=0,count=0;
+var userCount =0,userExist=0,count=0;
 const userCountRef = ref(db, "userInfo/userCount");
 onValue(userCountRef, (snapshot) => {
   userCount = parseInt(snapshot.val());
 });
 function isUserExist()
 {
-  const ref = ref(db, "userInfo/profile");
+  const profileRef = ref(db, "userInfo/profile");
   // const userExist= async () => {
   //   await 
   // } 
-  onChildAdded(ref, (data) => {
+  onChildAdded(profileRef, (data) => {
     // addCommentElement(postElement, data.key, data.val().text, data.val().author);
     count++;
     if(data.key==currentConfig.id)
