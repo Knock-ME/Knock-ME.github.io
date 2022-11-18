@@ -286,7 +286,7 @@ on('click', '.sendBtn', function (e)
   msg.pic=currentConfig.pic;
   msg.nm=currentConfig.nm;
   msg.msg=document.querySelector(".editTxt").value;
-
+  sendMsg(msg);
   if(msg.msg=="/last")
     getLastUserInfo();
 });
