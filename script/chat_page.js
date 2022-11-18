@@ -214,7 +214,7 @@ function clickYK()
   ykPro.appendChild(proPic);
   ykPro.appendChild(nm);
 
-  var conNm = document.querySelector(".nav");
+  var conNm = document.querySelector(".navInner");
   conNm.appendChild(ykPro);
   on('click', '#msgYk', function (e) {
     console.log("yk clicked");
