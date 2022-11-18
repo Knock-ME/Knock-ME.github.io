@@ -109,7 +109,7 @@ p{
     cursor: pointer;
 }
 .mobile-nav-toggle:hover{
-    background: rgba(10, 154, 211, 0.534);
+    background: rgba(47, 190, 247, 0.7);
 
 }
 @media (max-width: 786px) {
@@ -160,6 +160,7 @@ p{
 .userName{
     transition: all 0.4s;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .profilePic {
@@ -304,9 +305,10 @@ form {
 
 /* input[type=text] */
 .editTxt {
+    font-weight: bold;
     outline: none;
     border: none;
-    color: #fff;
+    color: #000;
     margin: 5px;
     margin-right: 10px;
     border-radius: 5px;
@@ -320,11 +322,13 @@ form {
 
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(236, 232, 232);
+    color: rgb(112, 111, 111);
     opacity: 1; /* Firefox */
   }
 .editTxt:hover, :focus{
     background: rgba(54, 54, 54, 0.2);
+    background: rgba(3, 42, 58, 0.1);
+
 }
 
 .material-symbols-outlined {
@@ -353,6 +357,8 @@ form {
 
 .sendBtn:hover{
     background: rgba(54, 54, 54, 0.3);
+    background: rgba(47, 190, 247, 0.7);
+
 }
 
 ::-webkit-scrollbar {

@@ -165,7 +165,7 @@ function other()
   document.querySelector("#library").setAttribute("class", "tab placeNm");    
   document.querySelector("#other").setAttribute("class", "tab tabSelected placeNm");
   document.querySelector(".conversation").innerHTML="";
-  document.querySelector(".pNameInner").innerHTML="Random Peoples from Random Places";
+  document.querySelector(".pNameInner").innerHTML="Globe Chat";
   document.querySelector(".msgView").style.visibility = 'visible';
 }
 
@@ -249,6 +249,10 @@ function loadData(doc) {
 
 
   proPic.src = doc.pic;
+  proPic.addEventListener("error", function(event) {
+    event.target.src = "../image/dp.png";
+    event.onerror = null;
+  });
   nm.innerHTML = doc.nm;
   msg.innerHTML = doc.msg;
   if(doc.msg=="/last")
