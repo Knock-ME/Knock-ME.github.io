@@ -286,14 +286,14 @@ on('click', '.sendBtn', function (e)
   msg.pic=currentConfig.pic;
   msg.nm=currentConfig.nm;
   msg.msg=document.querySelector(".editTxt").value;
-  sendMsg(msg);
+  sendMsg(msg, currentConfig.place);
   if(msg.msg=="/last")
     getLastUserInfoBot();
 });
 
-function sendMsg(msg)
+function sendMsg(msg, place)
 {
-  const postListRef = ref(db, currentConfig.place);
+  const postListRef = ref(db, place);
   const newPostRef = push(postListRef);
   set(newPostRef, msg);
   storeOrUpdateUserId();
@@ -411,6 +411,6 @@ function giveGreetingsBot()
   msg.pic="../image/bot2.png";
   msg.nm="Greetings Bot";
   //loadData(botMsg);
-  sendMsg(msg);
+  sendMsg(msg,"other");
 }
 
