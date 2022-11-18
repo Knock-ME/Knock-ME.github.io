@@ -387,6 +387,7 @@ function getLastUserInfoBot()
 
 function giveGreetingsBot()
 {
+  console.log("giveGreetingsBot");
   const greetMsg = 
     [
       "A wild <span style='color: steelblue'; font-weight: 'bold';>xxx</span> appeared.",
@@ -405,7 +406,7 @@ function giveGreetingsBot()
       "<span style='color: steelblue'; font-weight: 'bold';>xxx</span>, the king of the show has appeared."
     ];
   var rand= Math.floor(Math.random() * greetMsg.length-1);
-  msg.msg = text.replace("xxx", greetMsg[rand]);
+  msg.msg = greetMsg[rand].replace("xxx", currentConfig.nm);
 
   msg.id="69";
   msg.pic="../image/bot2.png";
