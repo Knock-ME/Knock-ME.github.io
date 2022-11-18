@@ -296,6 +296,12 @@ padding-bottom: 10px;
     font-weight: bold;
 }
 
+.ykClick{
+    color: steelblue;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .sendMsg {
     bottom: 30px;
     position: fixed;
@@ -383,3 +389,5 @@ form {
 
 
   }
+
+

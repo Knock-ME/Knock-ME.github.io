@@ -112,6 +112,9 @@ else if(sessionStorage.getItem("place")=="library")
   library();
 else if(sessionStorage.getItem("place")=="other")
   other();
+else if(sessionStorage.getItem("place")=="msgYk/"+currentConfig.id)
+  clickYK();
+
  
 
 function bonomaya()
@@ -123,6 +126,8 @@ function bonomaya()
   document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
   document.querySelector("#library").setAttribute("class", "tab placeNm");
   document.querySelector("#other").setAttribute("class", "tab placeNm");
+  if(JSON.stringify(document.querySelector("#msgYk"))!= "null")
+    document.querySelector("#msgYk").setAttribute("class", "tab placeNm");
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Bonomaya";
   document.querySelector(".msgView").style.visibility = 'visible';
@@ -136,6 +141,8 @@ function foodcourt()
   document.querySelector("#foodcourt").setAttribute("class", "tab tabSelected placeNm");
   document.querySelector("#library").setAttribute("class", "tab placeNm"); 
   document.querySelector("#other").setAttribute("class", "tab placeNm"); 
+  if(JSON.stringify(document.querySelector("#msgYk"))!= "null")
+    document.querySelector("#msgYk").setAttribute("class", "tab placeNm");
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Food Court";
   document.querySelector(".msgView").style.visibility = 'visible';
@@ -150,6 +157,8 @@ function library()
   document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
   document.querySelector("#library").setAttribute("class", "tab tabSelected placeNm");
   document.querySelector("#other").setAttribute("class", "tab placeNm");
+  if(JSON.stringify(document.querySelector("#msgYk"))!= "null")
+    document.querySelector("#msgYk").setAttribute("class", "tab placeNm");
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Library";
   document.querySelector(".msgView").style.visibility = 'visible';
@@ -164,9 +173,56 @@ function other()
   document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
   document.querySelector("#library").setAttribute("class", "tab placeNm");    
   document.querySelector("#other").setAttribute("class", "tab tabSelected placeNm");
+  if(JSON.stringify(document.querySelector("#msgYk"))!= "null")
+    document.querySelector("#msgYk").setAttribute("class", "tab placeNm");
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Globe Chat";
   document.querySelector(".msgView").style.visibility = 'visible';
+}
+
+function msgYK()
+{
+  currentConfig.place="msgYk/"+currentConfig.id;
+  sessionStorage.setItem("place", currentConfig.place);
+  document.querySelector(".pPicInner").src="../image/yk.jpg";
+  document.querySelector("#bonomaya").setAttribute("class", "tab placeNm");
+  document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
+  document.querySelector("#library").setAttribute("class", "tab placeNm");    
+  document.querySelector("#other").setAttribute("class", "tab placeNm");
+  document.querySelector("#msgYk").setAttribute("class", "tab tabSelected placeNm");
+  document.querySelector(".conversation").innerHTML="";
+  document.querySelector(".pNameInner").innerHTML="Yamin Mahdi";
+  document.querySelector(".msgView").style.visibility = 'visible';
+}
+function clickYK()
+{
+  const fragment = document.createDocumentFragment();
+
+  let ykPro = document.createElement("div");
+  let proPic = document.createElement("img");
+  let nm = document.createElement("p");
+
+  ykPro.setAttribute("class", "tab placeNm");
+  ykPro.setAttribute("id", "msgYk");
+  proPic.setAttribute("class", "placePic");
+  nm.setAttribute("class", "pName");
+  
+  proPic.src = "../image/yk.jpg";
+  nm.innerHTML = "Yamin Mahdi";
+
+  fragment.appendChild(ykPro);
+  ykPro.appendChild(proPic);
+  ykPro.appendChild(nm);
+
+  var conNm = document.querySelector(".nav");
+  conNm.appendChild(ykPro);
+  on('click', '#msgYk', function (e) {
+    console.log("yk clicked");
+    msgYK();
+    tabToggle();
+    refresh();
+  })
+  msgYK();
 }
 
 on('click', '#bonomaya', function (e) {
@@ -208,10 +264,14 @@ on('click', '.logoutBtn', function (e) {
 })
 
 
+
+
 // database work //
 
 const db = getDatabase();
 var lastMsgUserId="null";
+
+
 
 function refresh()
 {
@@ -264,6 +324,19 @@ function loadData(doc) {
   var conV = document.querySelector(".conversation");
   conV.appendChild(newMsg);
   conV.scrollTop = conV.scrollHeight;
+
+  if(doc.msg.includes("@yamin")||doc.msg.includes("@Yamin")||doc.msg.includes("@mahdi")||doc.msg.includes("@Mahdi"))
+  {
+    console.log("yk has");
+    msg.firstElementChild.addEventListener('click', function(event) {
+      console.log("yk clicked");
+      if(JSON.stringify(document.querySelector("#msgYk"))== "null")
+        clickYK(); 
+      else
+        msgYK();
+  });
+  }
+
 };
 
 const msg = {
@@ -272,7 +345,6 @@ const msg = {
   nm: "unknown",
   pic: "../image/dp.png"
 };
-
 on('click', '.sendBtn', function (e) 
 {
   // Create a new post reference with an auto-generated id
@@ -287,6 +359,16 @@ on('click', '.sendBtn', function (e)
 
 function sendMsg(msg, place)
 {
+  var tmp=msg.msg;
+  if(tmp.includes("@Yamin"))
+    tmp.replace("@Yamin","<span class='ykClick'>@Yamin</span>");
+  else if(tmp.includes("@yamin"))
+    tmp.replace("@yamin","<span class='ykClick'>@yamin</span>");
+  else if(tmp.includes("@mahdi"))
+    tmp.replace("@mahdi","<span class='ykClick'>@mamin</span>");
+  else if(tmp.includes("@Mahdi"))
+    tmp.replace("@Mahdi","<span class='ykClick'>@Mahdi</span>");
+
   const postListRef = ref(db, place);
   const newPostRef = push(postListRef);
   set(newPostRef, msg);
@@ -318,7 +400,7 @@ function isUserExist()
     count++;
     if(data.key==currentConfig.id)
       userExist=1;
-    if(userExist==0&&count==userCount)
+    if(userExist==0&&count==userCount&&currentConfig.id!=null)
     {
       console.log("New User");
       storeOrUpdateUserId();
@@ -410,3 +492,14 @@ function giveGreetingsBot()
   sendMsg(msg,"other");
 }
 
+
+function reply(text,id) {
+  msg.id="3305747356403806";
+  msg.pic="../image/yk.jpg";
+  msg.nm="Yamin Mahdi";
+  msg.msg=text;
+            //"msgYk/"+currentConfig.id
+  sendMsg(msg,"msgYk/"+id);  
+}
+
+//reply("hi","null");
