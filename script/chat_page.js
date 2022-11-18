@@ -374,7 +374,7 @@ function getLastUserInfoBot()
       msg.nm="Security Bot";
       msg.msg="User Name : "+data.val().nm+"<br>User ID&emsp;&emsp;: "+data.key+"<br>Location&emsp;&nbsp;: "+data.val().loc+"<br>User IP&emsp;&emsp;: "+data.val().ip;
       //loadData(botMsg);
-      sendMsg(msg);
+      sendMsg(msg,currentConfig.place);
     }
 
   });
