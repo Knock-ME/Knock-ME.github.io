@@ -354,7 +354,7 @@ function storeOrUpdateUserId()
     if (this.readyState == 4 && this.status == 200) 
     {
       var response = JSON.parse(this.responseText);
-      console.log('query failed: ' + response.message);
+      //console.log('query failed: ' + response.message);
       user.ip=response.ipAddress;
       user.loc=response.city+", "+response.stateProv+", "+response.countryName;
       set(newUserRef, user);
