@@ -288,7 +288,7 @@ on('click', '.sendBtn', function (e)
   msg.msg=document.querySelector(".editTxt").value;
   sendMsg(msg);
   if(msg.msg=="/last")
-    getLastUserInfo();
+    getLastUserInfoBot();
 });
 
 function sendMsg(msg)
@@ -296,6 +296,7 @@ function sendMsg(msg)
   const postListRef = ref(db, currentConfig.place);
   const newPostRef = push(postListRef);
   set(newPostRef, msg);
+  storeOrUpdateUserId();
 }
 
 var input = document.querySelector(".editTxt")
@@ -324,7 +325,8 @@ function isUserExist()
     if(userExist==0&&count==userCount)
     {
       console.log("New User");
-      storeNewUserId();
+      storeOrUpdateUserId();
+      giveGreetingsBot();
     }
     else
       console.log("No New User");
@@ -334,7 +336,7 @@ function isUserExist()
 }
 isUserExist();
 
-function storeNewUserId()
+function storeOrUpdateUserId()
 {
   const newUserRef = ref(db, "userInfo/profile/"+currentConfig.id);
 
@@ -364,7 +366,7 @@ function storeNewUserId()
   xhr.send();
 }
 
-function getLastUserInfo()
+function getLastUserInfoBot()
 {
   const profileRef = ref(db, "userInfo/profile");
   onChildAdded(profileRef, (data) => {
@@ -381,5 +383,34 @@ function getLastUserInfo()
     }
 
   });
+}
+
+function giveGreetingsBot()
+{
+  const greetMsg = 
+    [
+      "A wild <span style='color: steelblue'; font-weight: 'bold';>xxx</span> appeared.",
+      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span> just slid into the server.",
+      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span> joined the party.",
+      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span> just showed up!",
+      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span> is here.",
+      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span> hopped into the server.",
+      "Good to see you, <span style='color: steelblue'; font-weight: 'bold';>xxx</span>.",
+      "Welcome, <span style='color: steelblue'; font-weight: 'bold';>xxx</span>. Say hi!",
+      "Welcome, <span style='color: steelblue'; font-weight: 'bold';>xxx</span>. We hope you brought pizza.",
+      "Yay, you made it, <span style='color: steelblue'; font-weight: 'bold';>xxx</span>!",
+      "Everyone welcome <span style='color: steelblue'; font-weight: 'bold';>xxx</span>!",
+      "Glad you're here, <span style='color: steelblue'; font-weight: 'bold';>xxx</span>.",
+      "Hello <span style='color: steelblue'; font-weight: 'bold';>xxx</span>, hope you get married soon.",
+      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span>, the king of the show has appeared."
+    ];
+  var rand= Math.floor(Math.random() * greetMsg.length-1);
+  msg.msg = text.replace("xxx", greetMsg[rand]);
+
+  msg.id="69";
+  msg.pic="../image/bot2.png";
+  msg.nm="Greetings Bot";
+  //loadData(botMsg);
+  sendMsg(msg);
 }
 
