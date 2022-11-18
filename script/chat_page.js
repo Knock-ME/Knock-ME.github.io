@@ -99,6 +99,8 @@ on('click', '.mobile-nav-toggle', function (e) {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const db = getDatabase();
+
 //const storage = getStorage(app);
 
 if(!sessionStorage.getItem("place"))
@@ -268,10 +270,8 @@ on('click', '.logoutBtn', function (e) {
 
 // database work //
 
-const db = getDatabase();
+
 var lastMsgUserId="null";
-
-
 
 function refresh()
 {
