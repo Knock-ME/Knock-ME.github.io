@@ -193,6 +193,7 @@ function msgYK()
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Yamin Mahdi";
   document.querySelector(".msgView").style.visibility = 'visible';
+  refresh();
 }
 function clickYK()
 {
@@ -220,7 +221,6 @@ function clickYK()
     console.log("yk clicked");
     msgYK();
     tabToggle();
-    refresh();
   })
   msgYK();
 }
