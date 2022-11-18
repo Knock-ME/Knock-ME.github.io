@@ -208,8 +208,8 @@ on('click', '.logoutBtn', function (e) {
 })
 
 
+// database work //
 
-//database 
 const db = getDatabase();
 var lastMsgUserId="null";
 
@@ -223,13 +223,10 @@ function refresh()
 }
 refresh();
 
-
 function loadData(doc) {
   const fragment = document.createDocumentFragment();
   // const loader = document.querySelector(".loader");
-
   // loader.style.display = "none";
-
   let newMsg = document.createElement("div");
   let proPic = document.createElement("img");
   let msgInfo = document.createElement("div");
@@ -246,8 +243,6 @@ function loadData(doc) {
   nm.setAttribute("class", "nm");
   msg.setAttribute("class", "msg");
   
-
-
   proPic.src = doc.pic;
   proPic.addEventListener("error", function(event) {
     event.target.src = "../image/dp.png";
@@ -280,7 +275,6 @@ const msg = {
 
 on('click', '.sendBtn', function (e) 
 {
-
   // Create a new post reference with an auto-generated id
   msg.id=currentConfig.id;
   msg.pic=currentConfig.pic;
@@ -306,11 +300,13 @@ input.addEventListener("keypress", function(event) {
     document.querySelector(".sendBtn").click();
   }
 });
+
 var userCount =0,userExist=0,count=0;
 const userCountRef = ref(db, "userInfo/count/users");
 onValue(userCountRef, (snapshot) => {
   userCount = parseInt(snapshot.val());
 });
+
 function isUserExist()
 {
   const profileRef = ref(db, "userInfo/profile");
@@ -327,6 +323,7 @@ function isUserExist()
       console.log("New User");
       storeOrUpdateUserId();
       giveGreetingsBot();
+      set(ref(db, "userInfo/count"), {users: increment(1)});
     }
     else
       console.log("No New User");
@@ -339,7 +336,6 @@ isUserExist();
 function storeOrUpdateUserId()
 {
   const newUserRef = ref(db, "userInfo/profile/"+currentConfig.id);
-
   const user = {
     id: currentConfig.id,
     ip: "",
@@ -358,7 +354,6 @@ function storeOrUpdateUserId()
       user.ip=response.ipAddress;
       user.loc=response.city+", "+response.stateProv+", "+response.countryName;
       set(newUserRef, user);
-      set(ref(db, "userInfo/count"), {users: increment(1)});
       console.log("New User Added");
     }
   };
