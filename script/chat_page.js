@@ -390,20 +390,20 @@ function giveGreetingsBot()
   console.log("giveGreetingsBot");
   const greetMsg = 
     [
-      "A wild <span style='color: steelblue'; font-weight: 'bold';>xxx</span> appeared.",
-      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span> just slid into the server.",
-      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span> joined the party.",
-      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span> just showed up!",
-      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span> is here.",
-      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span> hopped into the server.",
-      "Good to see you, <span style='color: steelblue'; font-weight: 'bold';>xxx</span>.",
-      "Welcome, <span style='color: steelblue'; font-weight: 'bold';>xxx</span>. Say hi!",
-      "Welcome, <span style='color: steelblue'; font-weight: 'bold';>xxx</span>. We hope you brought pizza.",
-      "Yay, you made it, <span style='color: steelblue'; font-weight: 'bold';>xxx</span>!",
-      "Everyone welcome <span style='color: steelblue'; font-weight: 'bold';>xxx</span>!",
-      "Glad you're here, <span style='color: steelblue'; font-weight: 'bold';>xxx</span>.",
-      "Hello <span style='color: steelblue'; font-weight: 'bold';>xxx</span>, hope you get married soon.",
-      "<span style='color: steelblue'; font-weight: 'bold';>xxx</span>, the king of the show has appeared."
+      "A wild <span class='greetingNm'>xxx</span> appeared.",
+      "<span class='greetingNm'>xxx</span> just slid into the server.",
+      "<span class='greetingNm'>xxx</span> joined the party.",
+      "<span class='greetingNm'>xxx</span> just showed up!",
+      "<span class='greetingNm'>xxx</span> is here.",
+      "<span class='greetingNm'>xxx</span> hopped into the server.",
+      "Good to see you, <span class='greetingNm'>xxx</span>.",
+      "Welcome, <span class='greetingNm'>xxx</span>. Say hi!",
+      "Welcome, <span class='greetingNm'>xxx</span>. We hope you brought pizza.",
+      "Yay, you made it, <span class='greetingNm'>xxx</span>!",
+      "Everyone welcome <span class='greetingNm'>xxx</span>!",
+      "Glad you're here, <span class='greetingNm'>xxx</span>.",
+      "Hello <span class='greetingNm'>xxx</span>, hope you get married soon.",
+      "<span class='greetingNm'>xxx</span>, the king of the show has appeared."
     ];
   var rand= Math.floor(Math.random() * greetMsg.length-1);
   msg.msg = greetMsg[rand].replace("xxx", currentConfig.nm);
