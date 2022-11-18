@@ -387,6 +387,7 @@ var userCount =0,userExist=0,count=0;
 const userCountRef = ref(db, "userInfo/count/users");
 onValue(userCountRef, (snapshot) => {
   userCount = parseInt(snapshot.val());
+  document.querySelector(".usrCnt").innerHTML=userCount;
 });
 
 function isUserExist()

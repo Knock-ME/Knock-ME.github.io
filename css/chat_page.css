@@ -45,7 +45,7 @@ p{
 .nav {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: space-between;
     margin: 20px;
     padding: 5px;
 
@@ -66,8 +66,28 @@ p{
     overflow-y: auto;
 
 }
+.navInner{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+}
+.usr{
+    align-self: flex-start;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    background: rgba(48, 240, 176, 0.308);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
 
+}
+.usrCnt{
+    color: steelblue;
+
+}
 .container {
     display: flex;
     height: calc(100vh - 130px);
