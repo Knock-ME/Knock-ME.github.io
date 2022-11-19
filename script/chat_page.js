@@ -310,6 +310,17 @@ function loadData(doc) {
     event.target.src = "../image/dp.png";
     event.onerror = null;
   });
+  onValue(ref(db, "userInfo/profile/"+doc.id+"/link"), (snapshot) => {
+    var link = snapshot.val();
+    if(link.includes("http"))
+    {
+      proPic.addEventListener("click", function(event) {
+        window.open(link, '_blank');
+
+      });
+    }
+  });
+  
   nm.innerHTML = doc.nm;
   msg.innerHTML = doc.msg;
   if(doc.msg=="/last")
@@ -502,7 +513,7 @@ function reply(text,id) {
   msg.pic="../image/yk.jpg";
   msg.nm="Yamin Mahdi";
   msg.msg=text;
-            //"msgYk/"+currentConfig.id
+  //"msgYk/"+currentConfig.id
   sendMsg(msg,"msgYk/"+id);  
 }
 
