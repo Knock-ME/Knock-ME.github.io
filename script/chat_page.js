@@ -374,13 +374,13 @@ function sendMsg(msg, place)
 {
   var tmp=msg.msg;
   if(tmp.includes("@Yamin"))
-    tmp.replace("@Yamin","<span class='ykClick'>@Yamin</span>");
+  tmp=tmp.replace("@Yamin","<span class='ykClick'>@Yamin</span>");
   else if(tmp.includes("@yamin"))
-    tmp.replace("@yamin","<span class='ykClick'>@yamin</span>");
+  tmp=tmp.replace("@yamin","<span class='ykClick'>@yamin</span>");
   else if(tmp.includes("@mahdi"))
-    tmp.replace("@mahdi","<span class='ykClick'>@mamin</span>");
+  tmp=tmp.replace("@mahdi","<span class='ykClick'>@mamin</span>");
   else if(tmp.includes("@Mahdi"))
-    tmp.replace("@Mahdi","<span class='ykClick'>@Mahdi</span>");
+  tmp=tmp.replace("@Mahdi","<span class='ykClick'>@Mahdi</span>");
 
   msg.msg=tmp;
   const postListRef = ref(db, place);
