@@ -470,7 +470,7 @@ function getLastUserInfoBot()
       msg.id="69";
       msg.pic="../image/bot.png";
       msg.nm="Security Bot";
-      msg.msg="User Name : "+data.val().nm+"<br>User ID&emsp;&emsp;: "+data.key+"<br>Location&emsp;&nbsp;: "+data.val().loc+"<br>User IP&emsp;&emsp;: "+data.val().ip+"<br>Social Link&nbsp;: <a class='fblink' target='_blank' href='"+data.val().link+"''>Facebook</a>";
+      msg.msg="For any query: <span class='ykClick'>@yamin</span><br><br>User Name : "+data.val().nm+"<br>User ID&emsp;&emsp;: "+data.key+"<br>Location&emsp;&nbsp;: "+data.val().loc+"<br>User IP&emsp;&emsp;: "+data.val().ip+"<br>Social Link&nbsp;: <a class='fblink' target='_blank' href='"+data.val().link+"''>Facebook</a>";
       //loadData(botMsg);
       sendMsg(msg,currentConfig.place);
     }
