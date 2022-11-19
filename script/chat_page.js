@@ -446,33 +446,21 @@ function storeOrUpdateUserId()
 
 function getLastUserInfoBot()
 {
-  const profileRef = ref(db, "userInfo/profile/"+lastMsgUserId);
+  const profileRef = ref(db, "userInfo/profile");
+  onChildAdded(profileRef, (data) => {
+    // addCommentElement(postElement, data.key, data.val().text, data.val().author);
+    if(data.key==lastMsgUserId)
+    {
+      console.log("User found");
+      msg.id="69";
+      msg.pic="../image/bot.png";
+      msg.nm="Security Bot";
+      msg.msg="User Name : "+data.val().nm+"<br>User ID&emsp;&emsp;: "+data.key+"<br>Location&emsp;&nbsp;: "+data.val().loc+"<br>User IP&emsp;&emsp;: "+data.val().ip;
+      //loadData(botMsg);
+      sendMsg(msg,currentConfig.place);
+    }
 
-  onValue(userCountRef, (snapshot) => {
-    userCount = parseInt(snapshot.val());
-    console.log("User found");
-    msg.id="69";
-    msg.pic="../image/bot.png";
-    msg.nm="Security Bot";
-    msg.msg="User Name : "+snapshot.val().nm+"<br>User ID&emsp;&emsp;: "+snapshot.key+"<br>Location&emsp;&nbsp;: "+snapshot.val().loc+"<br>User IP&emsp;&emsp;: "+snapshot.val().ip;
-    //loadData(botMsg);
-    sendMsg(msg,currentConfig.place);
   });
-
-  // onChildAdded(profileRef, (data) => {
-  //   // addCommentElement(postElement, data.key, data.val().text, data.val().author);
-  //   if(data.key==lastMsgUserId)
-  //   {
-  //     console.log("User found");
-  //     msg.id="69";
-  //     msg.pic="../image/bot.png";
-  //     msg.nm="Security Bot";
-  //     msg.msg="User Name : "+data.val().nm+"<br>User ID&emsp;&emsp;: "+data.key+"<br>Location&emsp;&nbsp;: "+data.val().loc+"<br>User IP&emsp;&emsp;: "+data.val().ip;
-  //     //loadData(botMsg);
-  //     sendMsg(msg,currentConfig.place);
-  //   }
-
-  // });
 }
 
 function giveGreetingsBot()
