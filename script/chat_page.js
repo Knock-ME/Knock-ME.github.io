@@ -341,7 +341,7 @@ function loadData(doc) {
   if(doc.msg.includes("@yamin")||doc.msg.includes("@Yamin")||doc.msg.includes("@mahdi")||doc.msg.includes("@Mahdi"))
   {
     console.log("yk has");
-    msg.firstElementChild.addEventListener('click', function(event) {
+    msg.querySelector(".ykClick").addEventListener('click', function(event) {
       console.log("yk clicked");
       if(JSON.stringify(document.querySelector("#msgYk"))== "null")
         clickYK(); 
@@ -470,7 +470,7 @@ function getLastUserInfoBot()
       msg.id="69";
       msg.pic="../image/bot.png";
       msg.nm="Security Bot";
-      msg.msg="For any query: <span class='ykClick'>@yamin</span><br><br>User Name : "+data.val().nm+"<br>User ID&emsp;&emsp;: "+data.key+"<br>Location&emsp;&nbsp;: "+data.val().loc+"<br>User IP&emsp;&emsp;: "+data.val().ip+"<br>Social Link&nbsp;: <a class='fblink' target='_blank' href='"+data.val().link+"''>Facebook</a>";
+      msg.msg="User Name : "+data.val().nm+"<br>User ID&emsp;&emsp;: "+data.key+"<br>Location&emsp;&nbsp;: "+data.val().loc+"<br>User IP&emsp;&emsp;: "+data.val().ip+"<br>Social Link&nbsp;: <a class='fblink' target='_blank' href='"+data.val().link+"''>Facebook</a><br><br>For any query: <span class='ykClick'>@yamin</span>";
       //loadData(botMsg);
       sendMsg(msg,currentConfig.place);
     }
@@ -499,7 +499,7 @@ function giveGreetingsBot()
       "<span class='greetingNm'>xxx</span>, the king of the show has appeared."
     ];
   var rand= Math.floor(Math.random() * greetMsg.length-1);
-  msg.msg = greetMsg[rand].replace("xxx", currentConfig.nm);
+  msg.msg = (greetMsg[rand].replace("xxx", currentConfig.nm))+"<br><br>For any query: <span class='ykClick'>@yamin</span>";
 
   msg.id="69";
   msg.pic="../image/bot2.png";
