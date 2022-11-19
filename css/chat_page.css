@@ -269,6 +269,7 @@ p{
     block-size: 30px;
     margin: 5px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px, rgba(0, 0, 0, 0.23) 0px 2px 4px;
+    cursor: pointer;
 
 }
 .conversation{
