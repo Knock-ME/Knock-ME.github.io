@@ -312,7 +312,7 @@ function loadData(doc) {
   });
   onValue(ref(db, "userInfo/profile/"+doc.id+"/link"), (snapshot) => {
     var link = snapshot.val();
-    if(link.includes("http"))
+    if(link!=null)
     {
       proPic.addEventListener("click", function(event) {
         window.open(link, '_blank');
