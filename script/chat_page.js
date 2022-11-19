@@ -56,7 +56,8 @@ const currentConfig = {
   id: "",
   pic: "../image/dp.png",
   nm: "",
-  place: "null"
+  place: "null",
+  link: ""
 };
 //console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 
@@ -68,6 +69,7 @@ else
   currentConfig.id=sessionStorage.getItem("id");
   currentConfig.pic=sessionStorage.getItem("pic");
   currentConfig.nm=sessionStorage.getItem("nm");
+  currentConfig.link=sessionStorage.getItem("link");
   //console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 }
 
@@ -372,7 +374,7 @@ function sendMsg(msg, place)
   const postListRef = ref(db, place);
   const newPostRef = push(postListRef);
   set(newPostRef, msg);
-  storeOrUpdateUserId();
+  //storeOrUpdateUserId();
 }
 
 var input = document.querySelector(".editTxt")
@@ -423,7 +425,8 @@ function storeOrUpdateUserId()
     id: currentConfig.id,
     ip: "",
     nm: currentConfig.nm,
-    loc: ""
+    loc: "",
+    link: currentConfig.link
   };
 
   var endpoint = 'https://api.db-ip.com/v2/free/self';
