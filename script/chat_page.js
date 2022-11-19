@@ -382,6 +382,7 @@ function sendMsg(msg, place)
   else if(tmp.includes("@Mahdi"))
     tmp.replace("@Mahdi","<span class='ykClick'>@Mahdi</span>");
 
+  msg.msg=tmp;
   const postListRef = ref(db, place);
   const newPostRef = push(postListRef);
   set(newPostRef, msg);
