@@ -325,7 +325,7 @@ function loadData(doc) {
   msg.innerHTML = doc.msg;
   if(doc.msg=="/last")
     msg.style.color = "steelblue";
-  else if(doc.id!="69")
+  if(doc.id!="69")
     lastMsgUserId=doc.id;
   fragment.appendChild(newMsg);
   newMsg.appendChild(proPic);
