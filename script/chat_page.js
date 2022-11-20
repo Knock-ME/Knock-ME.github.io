@@ -62,7 +62,7 @@ const currentConfig = {
 //console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 
 //sessionStorage.clear();
-if(sessionStorage.getItem("id"))
+if(!sessionStorage.getItem("id"))
   location.replace("../");
 else
 {
@@ -274,16 +274,20 @@ on('click', '.logoutBtn', function (e) {
 // database work //
 
 
-var lastMsgUserId=null, lastMsg=null;
+var lastMsgUserId=null, lastMsgKey=null;
 
 function refresh()
 {
+  const db = getDatabase();
   const commentsRef = ref(db, currentConfig.place);
   onChildAdded(commentsRef, (data) => {
     // addCommentElement(postElement, data.key, data.val().text, data.val().author);
-    if(data.val().msg!=lastMsg&&data.val().id!=lastMsgUserId)
+    if(data.key!=lastMsgKey)
     {
       loadData(data.val());
+      lastMsgKey=data.key;
+      document.querySelector(".editTxt").focus();
+      //$("#.editTxt").focus();
     }
   });
 }
