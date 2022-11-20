@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"
+//import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"
 
 import { getDatabase, ref, onChildAdded, push, set, onValue, increment} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 //import { getStorage, uploadBytesResumable,ref as rff, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
@@ -62,7 +62,7 @@ const currentConfig = {
 //console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 
 //sessionStorage.clear();
-if(!sessionStorage.getItem("id"))
+if(sessionStorage.getItem("id"))
   location.replace("../");
 else
 {
@@ -100,7 +100,7 @@ on('click', '.mobile-nav-toggle', function (e) {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const analytics = getAnalytics(app);
 const db = getDatabase();
 
 //const storage = getStorage(app);
@@ -224,7 +224,8 @@ function clickYK()
   on('click', '#msgYk', function (e) {
     console.log("yk clicked");
     msgYK();
-    tabToggle();
+    if(window.innerWidth<=786)
+      tabToggle();
   })
   msgYK();
 }
@@ -273,14 +274,17 @@ on('click', '.logoutBtn', function (e) {
 // database work //
 
 
-var lastMsgUserId="null";
+var lastMsgUserId=null, lastMsg=null;
 
 function refresh()
 {
   const commentsRef = ref(db, currentConfig.place);
   onChildAdded(commentsRef, (data) => {
     // addCommentElement(postElement, data.key, data.val().text, data.val().author);
-    loadData(data.val());
+    if(data.val().msg!=lastMsg&&data.val().id!=lastMsgUserId)
+    {
+      loadData(data.val());
+    }
   });
 }
 refresh();
