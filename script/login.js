@@ -1,3 +1,6 @@
+if(sessionStorage.getItem("id"))
+    location.replace("html/chat_page.htm");
+
 function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.
