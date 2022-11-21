@@ -2,7 +2,14 @@ function statusChangeCallback(response) {  // Called with the results from FB.ge
     console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.
     if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-        testAPI();
+        if(sessionStorage.logout=="0")
+        {
+            FB.logout(function(response) {
+                console.log("Logout Successfull, "+response.status);
+             });
+        }
+        else
+            testAPI();
     } else {                                 // Not logged into your webpage or we are unable to tell.
         document.getElementById('status').innerHTML = 'Please log ' +
             'into this webpage.';
@@ -11,7 +18,7 @@ function statusChangeCallback(response) {  // Called with the results from FB.ge
 function checkLoginState() {               // Called when a person is finished with the Login Button.
     FB.getLoginStatus(function (response) {   // See the onlogin handler
         statusChangeCallback(response);
-    });
+    }, {scope: 'user_link'});
 }
 
 window.fbAsyncInit = function () {
@@ -23,12 +30,7 @@ window.fbAsyncInit = function () {
     });
 
     FB.AppEvents.logPageView();
-    if(sessionStorage.logout=="0")
-    {
-        FB.logout(function(response) {
-            console.log("Logout Successfull, "+response.status);
-         });
-    }
+
     if(sessionStorage.getItem("id"))
         checkLoginState();
 
@@ -47,17 +49,12 @@ function testAPI() {                      // Testing Graph API after login.  See
 
     });
 
-    FB.getLoginStatus(function (response) {
-        if (response.status === 'connected') {
-            var accessToken = response.authResponse.accessToken;
-            FB.api('me/picture?width=100&height=100&redirect=false', function (response) {
-                // Insert your code here
-                console.log('img url, ' + response + '.');
-                sessionStorage.pic = String(response.data.url);
-                location.replace("html/chat_page.htm");
-            });
-        }
-    }, {scope: 'user_link'});
+    FB.api('me/picture?width=100&height=100&redirect=false', function (response) {
+        // Insert your code here
+        console.log('img url, ' + response + '.');
+        sessionStorage.pic = String(response.data.url);
+        location.replace("html/chat_page.htm");
+    });
 
 
 }
