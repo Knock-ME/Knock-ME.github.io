@@ -1,6 +1,14 @@
 if(sessionStorage.getItem("id"))
     location.replace("html/chat_page.htm");
 
+var finished_rendering = function() {
+    console.log("finished rendering plugins");
+    var spinner = document.getElementById("spinner");
+    spinner.removeAttribute("style");
+    spinner.removeChild(spinner.childNodes[0]);
+  }
+FB.Event.subscribe('xfbml.render', finished_rendering);
+
 function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.
@@ -16,6 +24,7 @@ function checkLoginState() {               // Called when a person is finished w
         statusChangeCallback(response);
     });
 }
+
 window.fbAsyncInit = function () {
     FB.init({
         appId: '660377585299971',
@@ -25,7 +34,15 @@ window.fbAsyncInit = function () {
     });
 
     FB.AppEvents.logPageView();
-    //checkLoginState();
+    if(sessionStorage.logout=="0")
+    {
+        FB.logout(function(response) {
+            console.log("Logout Successfull, "+response.status);
+         });
+    }
+    if(sessionStorage.getItem("id"))
+        checkLoginState();
+
 
 };
 
@@ -51,7 +68,7 @@ function testAPI() {                      // Testing Graph API after login.  See
                 location.replace("html/chat_page.htm");
             });
         }
-    });
+    }, {scope: 'user_link'});
 
 
 }

@@ -265,6 +265,7 @@ on('click', '.KnockME', function (e) {
 
 on('click', '.logoutBtn', function (e) {
   sessionStorage.clear();
+  sessionStorage.logout="0";
   location.replace("../");
 })
 
