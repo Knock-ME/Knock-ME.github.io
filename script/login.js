@@ -5,7 +5,8 @@ function statusChangeCallback(response) {  // Called with the results from FB.ge
         if(sessionStorage.logout=="0")
         {
             FB.logout(function(response) {
-                console.log("Logout Successfull, "+response.status);
+                console.log("Logout Successfull.");
+                sessionStorage.clear();
              });
         }
         else
