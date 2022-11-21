@@ -1,14 +1,3 @@
-if(sessionStorage.getItem("id"))
-    location.replace("html/chat_page.htm");
-
-var finished_rendering = function() {
-    console.log("finished rendering plugins");
-    var spinner = document.getElementById("spinner");
-    spinner.removeAttribute("style");
-    spinner.removeChild(spinner.childNodes[0]);
-  }
-FB.Event.subscribe('xfbml.render', finished_rendering);
-
 function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.
