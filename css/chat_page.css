@@ -146,9 +146,11 @@ p{
     }
     .header img{
         block-size: 60px;
+        margin: 0;
     } 
     .header {
         margin-top: 10px;
+
     } 
     p{
         font-size: 14px;
@@ -304,10 +306,17 @@ p{
 .conversation{
     /* width: calc(100% - 300px); */
 
-    height:calc(100% - 150px); 
+    height:calc(100% - 135px); 
     overflow:hidden; 
     overflow-y:scroll;
     padding-bottom: 10px;
+
+}
+@media (max-width: 786px) {
+    .conversation{
+        height:calc(100% - 115px); 
+
+    }
 
 }
 .otherMsg {
