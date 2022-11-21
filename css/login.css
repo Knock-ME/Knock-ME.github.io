@@ -27,13 +27,12 @@ body {
     backdrop-filter: saturate(180%) blur(2px);
 }
 p{
-    
     color: white;
     text-shadow: 1px 1px 1px #000000;
 }
 .info{
     font-size:20px;
-    margin-bottom: 50px;
+    margin-bottom: 80px;
     text-align: center;
 }
 .status

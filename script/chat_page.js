@@ -79,7 +79,10 @@ document.querySelector(".userName").innerHTML=currentConfig.nm;
 
 
 if(sessionStorage.getItem("place"))
+{
   currentConfig.place=sessionStorage.getItem("place");
+  document.querySelector(".startMsg").style.visibility = 'hidden';
+}
 else if(window.innerWidth<=786)
   tabToggle(); 
 
@@ -134,6 +137,7 @@ function bonomaya()
     document.querySelector("#msgYk").setAttribute("class", "tab placeNm");
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Bonomaya";
+  document.querySelector(".startMsg").style.visibility = 'hidden';
   document.querySelector(".msgView").style.visibility = 'visible';
 }
 function foodcourt()
@@ -149,6 +153,7 @@ function foodcourt()
     document.querySelector("#msgYk").setAttribute("class", "tab placeNm");
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Food Court";
+  document.querySelector(".startMsg").style.visibility = 'hidden';
   document.querySelector(".msgView").style.visibility = 'visible';
 }
 
@@ -165,6 +170,7 @@ function library()
     document.querySelector("#msgYk").setAttribute("class", "tab placeNm");
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Library";
+  document.querySelector(".startMsg").style.visibility = 'hidden';
   document.querySelector(".msgView").style.visibility = 'visible';
 }
 
@@ -181,6 +187,7 @@ function other()
     document.querySelector("#msgYk").setAttribute("class", "tab placeNm");
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Globe Chat";
+  document.querySelector(".startMsg").style.visibility = 'hidden';
   document.querySelector(".msgView").style.visibility = 'visible';
 }
 
@@ -196,6 +203,7 @@ function msgYK()
   document.querySelector("#msgYk").setAttribute("class", "tab tabSelected placeNm");
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML="Yamin Mahdi";
+  document.querySelector(".startMsg").style.visibility = 'hidden';
   document.querySelector(".msgView").style.visibility = 'visible';
   refresh();
 }
