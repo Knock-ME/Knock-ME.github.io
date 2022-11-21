@@ -62,6 +62,7 @@ const currentConfig = {
 //console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 
 //sessionStorage.clear();
+//sessionStorage.id="3305747356403806";
 if(!sessionStorage.getItem("id"))
   location.replace("../");
 else
@@ -120,7 +121,7 @@ else if(sessionStorage.getItem("place")=="library")
 else if(sessionStorage.getItem("place")=="other")
   other();
 else if(sessionStorage.getItem("place")=="msgYk/"+currentConfig.id)
-  clickYK();
+  clickYK("Yamin Mahdi", currentConfig.id);
 
  
 
@@ -191,23 +192,26 @@ function other()
   document.querySelector(".msgView").style.visibility = 'visible';
 }
 
-function msgYK()
+function msgYK(name, id)
 {
-  currentConfig.place="msgYk/"+currentConfig.id;
+  currentConfig.place="msgYk/"+id;
   sessionStorage.setItem("place", currentConfig.place);
-  document.querySelector(".pPicInner").src="../image/yk.jpg";
+  if(name=="Yamin Mahdi")
+    document.querySelector(".pPicInner").src="../image/yk.jpg";
+  else
+    document.querySelector(".pPicInner").src="../image/dp.png";
   document.querySelector("#bonomaya").setAttribute("class", "tab placeNm");
   document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
   document.querySelector("#library").setAttribute("class", "tab placeNm");    
   document.querySelector("#other").setAttribute("class", "tab placeNm");
   document.querySelector("#msgYk").setAttribute("class", "tab tabSelected placeNm");
   document.querySelector(".conversation").innerHTML="";
-  document.querySelector(".pNameInner").innerHTML="Yamin Mahdi";
+  document.querySelector(".pNameInner").innerHTML=name;
   document.querySelector(".startMsg").style.visibility = 'hidden';
   document.querySelector(".msgView").style.visibility = 'visible';
   refresh();
 }
-function clickYK()
+function clickYK(name, id)
 {
   const fragment = document.createDocumentFragment();
 
@@ -217,11 +221,21 @@ function clickYK()
 
   ykPro.setAttribute("class", "tab placeNm");
   ykPro.setAttribute("id", "msgYk");
+  ykPro.addEventListener("click", function(event) {
+    console.log("yk clicked");
+    msgYK(name, id);
+    if(window.innerWidth<=786)
+      tabToggle();
+  });
   proPic.setAttribute("class", "placePic");
   nm.setAttribute("class", "pName");
   
-  proPic.src = "../image/yk.jpg";
-  nm.innerHTML = "Yamin Mahdi";
+  if(name=="Yamin Mahdi")
+    proPic.src = "../image/yk.jpg";
+  else
+    proPic.src = "../image/dp.png";
+
+  nm.innerHTML = name;
 
   fragment.appendChild(ykPro);
   ykPro.appendChild(proPic);
@@ -229,13 +243,7 @@ function clickYK()
 
   var conNm = document.querySelector(".navInner");
   conNm.appendChild(ykPro);
-  on('click', '#msgYk', function (e) {
-    console.log("yk clicked");
-    msgYK();
-    if(window.innerWidth<=786)
-      tabToggle();
-  })
-  msgYK();
+  msgYK(name, id);
 }
 
 on('click', '#bonomaya', function (e) {
@@ -361,9 +369,9 @@ function loadData(doc) {
     msg.querySelector(".ykClick").addEventListener('click', function(event) {
       console.log("yk clicked");
       if(JSON.stringify(document.querySelector("#msgYk"))== "null")
-        clickYK(); 
+        clickYK("Yamin Mahdi", currentConfig.id); 
       else
-        msgYK();
+        msgYK("Yamin Mahdi", currentConfig.id);
   });
   }
 
@@ -526,13 +534,25 @@ function giveGreetingsBot()
 }
 
 
-function reply(text,id) {
-  msg.id="3305747356403806";
-  msg.pic="../image/yk.jpg";
-  msg.nm="Yamin Mahdi";
-  msg.msg=text;
-  //"msgYk/"+currentConfig.id
-  sendMsg(msg,"msgYk/"+id);  
-}
+// function reply(text,id) {
+//   msg.id="3305747356403806";
+//   msg.pic="../image/yk.jpg";
+//   msg.nm="Yamin Mahdi";
+//   msg.msg=text;
+//   //"msgYk/"+currentConfig.id
+//   sendMsg(msg,"msgYk/"+id);  
+// }
 
 //reply("hi","null");
+
+
+if(currentConfig.id=="3305747356403806")
+{
+  const profileRef = ref(db, "msgYk");
+  onChildAdded(profileRef, (data) => {
+
+    msg.msg="User Name : "+data.val().nm+"<br>User ID&emsp;&emsp;: "+data.key+"<br>Location&emsp;&nbsp;: "+data.val().loc+"<br>User IP&emsp;&emsp;: "+data.val().ip+"<br>Social Link&nbsp;: <a class='fblink' target='_blank' href='"+data.val().link+"''>Facebook</a><br><br>For any query: <span class='ykClick'>@yamin</span>";
+    clickYK(data.key,data.key);
+
+  });
+}
