@@ -23,7 +23,8 @@ p{
     border-radius: 10px;
 }
 .header img{
-    block-size: 100px;
+    block-size: 80px;
+    margin: 10px;
 
 }
 .logoutBtn {
@@ -137,20 +138,23 @@ p{
 @media (max-width: 786px) {
     .nav {
         left: -300px;
-        top: 103px;
+        top: 68px;
+        bottom: 1px;
     }
     .msgView{
         margin-left: 20px;
     }
     .header img{
-        block-size: 80px;
+        block-size: 60px;
     } 
-
+    .header {
+        margin-top: 10px;
+    } 
     p{
         font-size: 14px;
     }
     .container {
-        height: calc(100vh - 110px);
+        height: calc(100vh - 75px);
         
     }
 
@@ -234,15 +238,7 @@ p{
     transition: all 0.4s;
 
 }
-@media (max-width: 786px) {
-    .pPicInner {
-        border-radius: 50%;
-        block-size: 40px;
-        padding: 5px;
-        transition: all 0.4s;
-    }
 
-}
 .topInfo {
     display: flex;
     align-items: center;
@@ -260,7 +256,19 @@ p{
 
 
 }
+@media (max-width: 786px) {
+    .pPicInner {
+        border-radius: 50%;
+        block-size: 35px;
+        padding: 5px;
+        transition: all 0.4s;
+    }
+    .topInfo {
+        padding: 8px;
+        margin-top: -15px;
+    }
 
+}
 .placeNm
 {
     display: flex;

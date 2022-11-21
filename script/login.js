@@ -31,9 +31,7 @@ window.fbAsyncInit = function () {
     });
 
     FB.AppEvents.logPageView();
-
-    if(sessionStorage.getItem("id"))
-        checkLoginState();
+    checkLoginState();
 
 
 };
