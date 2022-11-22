@@ -16,7 +16,7 @@ Phone: [+8801989601230](tel:+8801989601230)
 Twitter: [@yk\_mahdi](https://twitter.com/yk_mahdi)  
  
  
-## License [![License](https://img.shields.io/badge/license-GPLv3-green.svg?style=flat)](https://github.com/YaminMahdi/line2box_androidGame/blob/main/LICENSE)
+## License [![License](https://img.shields.io/badge/license-GPLv3-green.svg?style=flat)](https://github.com/YaminMahdi/KnockME/blob/main/LICENSE)
 ```
 Copyright (C) 2022 Yamin Mahdi  
   
