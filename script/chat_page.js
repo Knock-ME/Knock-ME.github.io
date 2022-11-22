@@ -393,7 +393,7 @@ on('click', '.sendBtn', function (e)
   msg.pic=currentConfig.pic;
   msg.nm=currentConfig.nm;
   msg.msg=document.querySelector(".editTxt").value;
-  if(!msg.msg=="/load")
+  if(msg.msg!="/load")
     sendMsg(msg, currentConfig.place);
   else
     loadYkMsg();
