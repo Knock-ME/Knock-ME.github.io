@@ -62,7 +62,7 @@ const currentConfig = {
 //console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 
 //sessionStorage.clear();
-//sessionStorage.id="3305747356403806";
+sessionStorage.id="3305747356403806";
 if(!sessionStorage.getItem("id"))
   location.replace("../");
 else
@@ -393,10 +393,14 @@ on('click', '.sendBtn', function (e)
   msg.pic=currentConfig.pic;
   msg.nm=currentConfig.nm;
   msg.msg=document.querySelector(".editTxt").value;
-  if(msg.msg!="/load")
-    sendMsg(msg, currentConfig.place);
+  if(msg.msg=="/load")
+    sessionStorage.load=1;
+  else if(msg.msg=="/remove")
+    sessionStorage.load=0;
   else
-    loadYkMsg();
+    sendMsg(msg, currentConfig.place);
+
+    
   if(msg.msg=="/last")
     getLastUserInfoBot();
 });
@@ -565,3 +569,6 @@ function loadYkMsg()
     });
   }
 }
+
+if(sessionStorage.load==1)
+  loadYkMsg();
