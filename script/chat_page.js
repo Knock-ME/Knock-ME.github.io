@@ -62,7 +62,7 @@ const currentConfig = {
 //console.log(currentConfig.id,currentConfig.pic,currentConfig.nm);
 
 //sessionStorage.clear();
-sessionStorage.id="3305747356403806";
+//sessionStorage.id="3305747356403806";
 if(!sessionStorage.getItem("id"))
   location.replace("../");
 else
