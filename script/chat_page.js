@@ -228,7 +228,7 @@ function clickYK(name, id)
     msgYK(name, id);
     if(window.innerWidth<=786)
       tabToggle();
-      this.setAttribute("class", "tab tabSelected placeNm");
+    this.setAttribute("class", "tab tabSelected placeNm");
   });
   proPic.setAttribute("class", "placePic");
   nm.setAttribute("class", "pName");
