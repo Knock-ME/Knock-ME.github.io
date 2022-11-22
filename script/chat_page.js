@@ -393,7 +393,10 @@ on('click', '.sendBtn', function (e)
   msg.pic=currentConfig.pic;
   msg.nm=currentConfig.nm;
   msg.msg=document.querySelector(".editTxt").value;
-  sendMsg(msg, currentConfig.place);
+  if(!msg.msg=="/load")
+    sendMsg(msg, currentConfig.place);
+  else
+    loadYkMsg();
   if(msg.msg=="/last")
     getLastUserInfoBot();
 });
@@ -549,13 +552,16 @@ function giveGreetingsBot()
 //reply("hi","null");
 
 
-if(currentConfig.id=="3305747356403806")
+function loadYkMsg()
 {
-  const profileRef = ref(db, "msgYk");
-  onChildAdded(profileRef, (data) => {
-
-    msg.msg="User Name : "+data.val().nm+"<br>User ID&emsp;&emsp;: "+data.key+"<br>Location&emsp;&nbsp;: "+data.val().loc+"<br>User IP&emsp;&emsp;: "+data.val().ip+"<br>Social Link&nbsp;: <a class='fblink' target='_blank' href='"+data.val().link+"''>Facebook</a><br><br>For any query: <span class='ykClick'>@yamin</span>";
-    clickYK(data.key,data.key);
-
-  });
+  if(currentConfig.id=="3305747356403806")
+  {
+    const profileRef = ref(db, "msgYk");
+    onChildAdded(profileRef, (data) => {
+      const userRef = ref(db, "userInfo/profile/"+data.key+"/nm");
+      onValue(userRef, (snapshot) => {
+        clickYK(snapshot.val(),data.key);
+      });
+    });
+  }
 }
