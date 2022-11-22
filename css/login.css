@@ -6,13 +6,13 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     
 
 }
 .logo{
     display: block;
-    block-size: 100px;
+    block-size: 120px;
 }
 .center{
     padding: 100px;
@@ -28,21 +28,31 @@ body {
 }
 p{
     color: white;
-    text-shadow: 1px 1px 1px #000000;
+    font-weight: bolder;
+    text-shadow: .5px .5px .5px #000000;
+    text-align: center;
 }
 .info{
     font-size:20px;
-    margin-bottom: 80px;
-    text-align: center;
+    margin-bottom: 120px;
+    margin-top: 0px;
 }
 .status
 {
     margin-top: 10px;
-    text-align: center;
+}
+.copyright{
+    text-shadow:none;
+    color: steelblue;
+    margin-top: 60px;
+    margin-bottom: -70px;
 }
 @media (max-width: 786px) {
     .center{
         height: 100%;
         width: 100%;
+    }
+    .info{
+        max-width: 280px;
     }
 }
