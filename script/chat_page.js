@@ -204,7 +204,9 @@ function msgYK(name, id)
   document.querySelector("#foodcourt").setAttribute("class", "tab placeNm");
   document.querySelector("#library").setAttribute("class", "tab placeNm");    
   document.querySelector("#other").setAttribute("class", "tab placeNm");
-  document.querySelector("#msgYk").setAttribute("class", "tab tabSelected placeNm");
+  //document.querySelector("#msgYk").setAttribute("class", "tab tabSelected placeNm");
+  var x=document.querySelectorAll("#msgYk");
+  x.forEach(i => i.setAttribute("class", "tab placeNm"));
   document.querySelector(".conversation").innerHTML="";
   document.querySelector(".pNameInner").innerHTML=name;
   document.querySelector(".startMsg").style.visibility = 'hidden';
@@ -226,6 +228,7 @@ function clickYK(name, id)
     msgYK(name, id);
     if(window.innerWidth<=786)
       tabToggle();
+      this.setAttribute("class", "tab tabSelected placeNm");
   });
   proPic.setAttribute("class", "placePic");
   nm.setAttribute("class", "pName");
