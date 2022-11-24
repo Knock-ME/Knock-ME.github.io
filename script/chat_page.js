@@ -455,7 +455,6 @@ function isUserExist()
       console.log("New User");
       storeOrUpdateUserId();
       giveGreetingsBot();
-      set(ref(db, "userInfo/count"), {users: increment(1)});
     }
     else
       console.log("No New User");
@@ -488,6 +487,7 @@ function storeOrUpdateUserId()
       user.loc=response.city+", "+response.stateProv+", "+response.countryName;
       set(newUserRef, user);
       console.log("New User Added");
+      set(ref(db, "userInfo/count"), {users: increment(1)});
     }
   };
   xhr.open('GET', endpoint, true);

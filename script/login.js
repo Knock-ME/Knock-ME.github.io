@@ -45,15 +45,16 @@ function testAPI() {                      // Testing Graph API after login.  See
         sessionStorage.id = response.id;
         sessionStorage.nm = response.name;
         sessionStorage.link = response.link;
+        FB.api('me/picture?width=100&height=100&redirect=false', function (response) {
+            // Insert your code here
+            console.log('img url, ' + response + '.');
+            sessionStorage.pic = String(response.data.url);
+            location.replace("html/chat_page.htm");
+        });
 
     });
 
-    FB.api('me/picture?width=100&height=100&redirect=false', function (response) {
-        // Insert your code here
-        console.log('img url, ' + response + '.');
-        sessionStorage.pic = String(response.data.url);
-        location.replace("html/chat_page.htm");
-    });
+
 
 
 }
