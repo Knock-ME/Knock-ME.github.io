@@ -1,9 +1,21 @@
 # KnockME
- A Web Real Time Chat App
+
+A Web Real Time Chat App
+
+## Screenshorts:
+
+![Screenshot_54](https://user-images.githubusercontent.com/48239104/204683782-1d781d8a-b552-4d4d-b5bf-b18765f39a74.png)
+
+![Screenshot_53](https://user-images.githubusercontent.com/48239104/204683747-c62c0e60-38d7-4ead-b014-99f4a7af2f19.png)
+
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![IMG_20221122_182646](https://user-images.githubusercontent.com/48239104/204684078-4d69d060-1703-42c8-8445-5bc6f7e92cb0.png)  |  ![IMG_20221122_191337](https://user-images.githubusercontent.com/48239104/204684088-3a01aacc-488b-4163-9293-8b7c3f10bb7d.png)
+
+
+
  
- 
- 
-## Contract Info.
+## Contract Info:
 
 This is a personal fun project, more specifically a game made by-  
   
