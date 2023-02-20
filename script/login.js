@@ -6,7 +6,7 @@ function statusChangeCallback(response) {  // Called with the results from FB.ge
     if (response.status === 'connected') {   // Logged into your webpage and Facebook.
         var accessToken = response.authResponse.accessToken;
         const auth = getAuth();
-        signInWithCustomToken(auth, token)
+        signInWithCustomToken(auth, accessToken)
           .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
