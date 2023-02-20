@@ -17,11 +17,14 @@ FB.getLoginStatus(function(response) {
     if (response.status === 'connected') 
     {   // Logged into your webpage and Facebook.
      var accessToken = response.authResponse.accessToken;
+             console.log(accessToken);
+
      const auth = getAuth();
      signInWithCustomToken(auth, accessToken)
        .then((userCredential) => {
          // Signed in
          const user = userCredential.user;
+       console.log('Signed in');
          // ...
        })
        .catch((error) => {
