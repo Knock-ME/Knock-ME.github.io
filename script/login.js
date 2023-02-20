@@ -1,23 +1,7 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"
-import { getAuth, signInWithCustomToken } from "firebase/auth";
-
 function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.
     if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-        var accessToken = response.authResponse.accessToken;
-        const auth = getAuth();
-        signInWithCustomToken(auth, accessToken)
-          .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            // ...
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ...
-          });
         if(sessionStorage.logout=="0")
         {
             FB.logout(function(response) {
