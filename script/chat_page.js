@@ -5,8 +5,10 @@ import { getDatabase, ref, onChildAdded, push, set, onValue, increment} from "ht
 //import { getStorage, uploadBytesResumable,ref as rff, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
 import { getAuth, signInWithCustomToken } from "firebase/auth";
 
-FB.getLoginStatus(function(response) {
-  if (response.status === 'connected') {
+FB.getLoginStatus(function(response) 
+{
+  if (response.status === 'connected') 
+  {
     // The user is logged in and has authenticated your
     // app, and response.authResponse supplies
     // the user's ID, a valid access token, a signed
@@ -33,7 +35,8 @@ FB.getLoginStatus(function(response) {
          // ...
        });
     }
-}
+  }
+});
  
 /**
  * Easy selector helper function
