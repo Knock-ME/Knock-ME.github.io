@@ -1,3 +1,4 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"
 import { getAuth, signInWithCustomToken } from "firebase/auth";
 
 function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
