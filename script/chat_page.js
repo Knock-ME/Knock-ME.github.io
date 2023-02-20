@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
 //import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"
 
 import { getDatabase, ref, onChildAdded, push, set, onValue, increment} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
