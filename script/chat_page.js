@@ -3,7 +3,35 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebas
 
 import { getDatabase, ref, onChildAdded, push, set, onValue, increment} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 //import { getStorage, uploadBytesResumable,ref as rff, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
+import { getAuth, signInWithCustomToken } from "firebase/auth";
 
+FB.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+    // The user is logged in and has authenticated your
+    // app, and response.authResponse supplies
+    // the user's ID, a valid access token, a signed
+    // request, and the time the access token 
+    // and signed request each expire.
+    var uid = response.authResponse.userID;
+    var accessToken = response.authResponse.accessToken;
+    if (response.status === 'connected') 
+    {   // Logged into your webpage and Facebook.
+     var accessToken = response.authResponse.accessToken;
+     const auth = getAuth();
+     signInWithCustomToken(auth, accessToken)
+       .then((userCredential) => {
+         // Signed in
+         const user = userCredential.user;
+         // ...
+       })
+       .catch((error) => {
+         const errorCode = error.code;
+         const errorMessage = error.message;
+         // ...
+       });
+    }
+}
+ 
 /**
  * Easy selector helper function
  */
