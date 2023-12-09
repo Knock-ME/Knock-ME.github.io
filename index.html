@@ -14,9 +14,9 @@
     <meta property="og:type" content="website" />
     <meta property="al:web:should_fallback" content="false" />
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type='text/javascript'>
-        document.getElementsByTagName('head')[0].appendChild('<meta property="al:android:target_url" content="'+location.href+'"/>');
+        $('head').append('<meta property="al:android:target_url" content="'+location.href+'"/>');
     </script>
 
 
