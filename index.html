@@ -13,7 +13,10 @@
     <meta property="og:title" content="KnockME" />
     <meta property="og:type" content="website" />
     <meta property="al:web:should_fallback" content="false" />
-
+    <script type='text/javascript'>
+        document.getElementsByTagName('head')[0].appendChild('<meta property="al:android:target_url" content="'+location.href+'">');
+    </script>
+    
     <title>KnockME - Login</title>
     <link rel="apple-touch-icon" sizes="180x180" href="image/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="image/favicon-32x32.png">
@@ -22,13 +25,10 @@
     <link rel="stylesheet" href="css/login.css">
     <script src="https://connect.facebook.net/en_US/sdk.js"></script>
     <script src="script/login.js"></script>
+
 </head>
 
 <body>
-
-    <script type='text/javascript'>
-        $('head').append('<meta property="al:android:target_url" content="'+location.href+'">');
-    </script>
 
     <div class="center">
         <img src="image/logo.png" alt="logo" class="logo">
